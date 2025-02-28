@@ -52,10 +52,10 @@ $this->registerJsFile("/js/script.js");
                                     <div class="factor__head">
                                         <span class="factor__number">
                                             <span class="factor__number-value animate" data-counter=""
-                                                  data-counter-separator=" ">300</span>
+                                                  data-counter-separator=" ">200</span>
                                         </span>
                                         <span class="factor__suffix">
-                                            <span style="display: none">300</span> моделей техники
+                                            <span style="display: none">200</span> моделей техники
                                         </span>
                                     </div>
                                 </div>
@@ -68,10 +68,10 @@ $this->registerJsFile("/js/script.js");
                                     <div class="factor__head">
                                         <span class="factor__number">
                                             <span class="factor__number-value animate" data-counter=""
-                                                  data-counter-separator=" ">30</span>
+                                                  data-counter-separator=" ">15</span>
                                         </span>
                                         <span class="factor__suffix">
-                                            <span style="display: none">30</span> лет успешной работы
+                                            <span style="display: none">15</span> лет успешной работы
                                         </span>
                                     </div>
                                 </div>
@@ -150,10 +150,10 @@ $this->registerJsFile("/js/script.js");
                                 </div>
                                 <div class="factor__head">
 						    <span class="factor__number">
-							<span class="factor__number-value" data-counter="">20</span>
+							<span class="factor__number-value" data-counter="">15</span>
 						    </span>
                                     <span class="factor__suffix">
-							<span style="display: none">20</span>
+							<span style="display: none">15</span>
 							лет успешной работы
                                                     </span>
                                 </div>
@@ -170,7 +170,7 @@ $this->registerJsFile("/js/script.js");
 						    </span>
                                     <span class="factor__suffix">
 							<span style="display: none">1</span>
-							регион присутствия в Алтайском крае
+							регион присутствия в Хабаровскомском крае
 						    </span>
                                 </div>
                             </div>
@@ -391,7 +391,7 @@ $this->registerJsFile("/js/script.js");
         <div class="wrapper wrap-pr-1 wrap-pl-1 mb-lg-64 mb-md-56 mb-32">
             <div class="map-box__top animate" data-animate="">
                 <h2 class="map-box__heading">Наш адрес</h2>
-                <p class="map-box__description text-default">Работаем на территории Тамбовской и Липецкой областей</p>
+                <p class="map-box__description text-default">Работаем на территории Хабаровского края</p>
             </div>
         </div>
         <div class="map-box__container animate" data-animate="">

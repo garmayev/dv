@@ -274,7 +274,7 @@ $this->title = "{$name->value} - официальный дилер техник�
                                             <h4 class="block-slider__slide-content-title">Официальный дилер
                                                 Ростсельмаш</h4>
                                             <div class="user-text text">
-                                                <p>Более 10 лет успешной работы</p>
+                                                <p>Более 15 лет успешной работы</p>
                                             </div>
                                         </div>
                                         <div class="block-slider__slide-content-text animate" data-animate="">
