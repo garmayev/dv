@@ -35,7 +35,7 @@ JS);
 <div class="header-overlay"></div>
 <style>
     .logo-white a img:first-child, .logo-red a img:first-child {
-        width: 150px;
+        width: 200px;
     }
 /*    .is-white.is-menu-open .header__wrap > .n-logo-t {
         display: none !important;
