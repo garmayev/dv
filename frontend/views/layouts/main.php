@@ -54,7 +54,7 @@ $branch = \common\models\Branch::findOne(\Yii::$app->session->get('branch'));
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="robots" content="index, follow"/>
     <meta name="description"
-          content="ТК Европа - официальный дилер техники Ростсельмаш в Алтайском крае"/>
+          content="АгроТехника-ДВ - официальный дилер техники Ростсельмаш в Хабаровском крае"/>
     <script>
         const scriptList = [
             "/js/script.js",

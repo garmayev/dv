@@ -22,15 +22,15 @@ class DataController extends Controller
         $this->faker = Factory::create('ru-RU');
         $this->branches = [
             [
-                'title' => 'ТК "Европа"',
-                'region' => 'Алтайский край',
-                'address' => '656067, г. Барнаул, ул. Власихинская, д. 192',
-                'latitude' => 53.33309,
-                'longitude' => 83.649625,
-                'phone' => '8 (3852) 500-533',
+                'title' => '"АгроТехника-ДВ"',
+                'region' => 'Хабаровский край',
+                'address' => '680006, г. Хабаровск, Улица Индустриальная, 19 лит А, А1',
+                'latitude' => 48.7555913,
+                'longitude' => 135.0264143,
+                'phone' => '8 (800) 250-70-05',
                 'email' => 'evropa55@inbox.ru',
                 'type' => 1,
-                'city' => 'Барнаул'
+                'city' => 'Хабаровск'
             ]
         ];
         $this->users = [
@@ -54,7 +54,7 @@ class DataController extends Controller
         ];
         $this->slider = [
             [
-                'title' => 'Главный слайдер для Барнаульского филиала',
+                'title' => 'Главный слайдер для Хабаровского филиала',
                 'branch_id' => 1,
                 'is_main' => 1,
                 'slides' => [

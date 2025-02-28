@@ -111,7 +111,7 @@ CSS
                 <ul class="footer__action-list">
                     <li class="footer__action">
                         <p class="subscribe-descr text-default">Официальный дилер
-                            Ростсельмаш<br/>ООО Торговая Компания "Европа"</p>
+                            Ростсельмаш<br/> "АгроТехника-ДВ"</p>
                     </li>
                     <li class="footer__action">
                         <a href="tel:<?= $cleanPhone ?>" class="text-link text-default"
