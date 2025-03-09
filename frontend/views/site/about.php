@@ -34,9 +34,6 @@ $this->registerJsFile("/js/script.js");
                                     агробизнеса в Хабаровском крае для обеспечения сельскохозяйственной техникой и
                                     комплектующими к ней.</p>
 
-                                <p>Фермерам приходилось доставлять технику из центральной части России, что значительно
-                                    увеличивало затраты и время. Мы решили изменить эту ситуацию, предоставив местным
-                                    аграриям доступ к современным и надежным решениям прямо на месте.</p>
                             </div>
                             <div class="main-slider-slide__actions">
                                 <div class="main-slider-slide__action ">
@@ -46,16 +43,13 @@ $this->registerJsFile("/js/script.js");
                         <div class="main-slider-slide__fact">
                             <div class="main-slider-slide__fact-wrap">
                                 <div class="factor animate" data-viewport-trigger="" data-animate="">
-                                    <div class="factor__text text-default animate" data-animate="fade-in-up"
-                                         data-animate-delay="1">Поставлено более
-                                    </div>
                                     <div class="factor__head">
                                         <span class="factor__number">
                                             <span class="factor__number-value animate" data-counter=""
-                                                  data-counter-separator=" ">200</span>
+                                                  data-counter-separator=" ">2</span>
                                         </span>
                                         <span class="factor__suffix">
-                                            <span style="display: none">200</span> моделей техники
+                                            <span style="display: none">2</span> региона присутствия
                                         </span>
                                     </div>
                                 </div>
@@ -166,11 +160,11 @@ $this->registerJsFile("/js/script.js");
                                 </div>
                                 <div class="factor__head">
 						    <span class="factor__number">
-							<span class="factor__number-value" data-counter="">1</span>
+							<span class="factor__number-value" data-counter="">2</span>
 						    </span>
                                     <span class="factor__suffix">
-							<span style="display: none">1</span>
-							регион присутствия в Хабаровскомском крае
+							<span style="display: none">0</span>
+							региона присутствия в Хабаровскомском крае и Еврейской автономной области
 						    </span>
                                 </div>
                             </div>
@@ -223,7 +217,7 @@ $this->registerJsFile("/js/script.js");
                                         </div>
                                     </div>
                                     <div class="slider-story__image">
-                                        <img class="image is-cover" src="/images/IMG_7463.JPG" alt="image">
+                                        <img class="image is-cover" src="/images/main.jpg" alt="image">
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +301,7 @@ $this->registerJsFile("/js/script.js");
                     <h2>Заключение</h2>
                 </div>
                 <div class="general-description__left general-description__left mr-32">
-                    <img src="/images/20240621_102608.jpg" class="image is-cover" alt="image">
+                    <img src="/images/20240621_102609.jpg" class="image is-cover" alt="image">
                 </div>
                 <div class="general-description__right general-description__right--wide">
                     <div class="general-description__description user-text">
@@ -391,7 +385,7 @@ $this->registerJsFile("/js/script.js");
         <div class="wrapper wrap-pr-1 wrap-pl-1 mb-lg-64 mb-md-56 mb-32">
             <div class="map-box__top animate" data-animate="">
                 <h2 class="map-box__heading">Наш адрес</h2>
-                <p class="map-box__description text-default">Работаем на территории Хабаровского края</p>
+                <p class="map-box__description text-default">Работаем на территории Хабаровского края и Еврейской автономной области</p>
             </div>
         </div>
         <div class="map-box__container animate" data-animate="">
