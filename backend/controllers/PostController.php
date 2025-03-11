@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use common\models\Post;
+use common\models\Tag;
 use vova07\imperavi\actions\UploadFileAction;
 use yii\data\ActiveDataProvider;
 use yii\filters\AccessControl;

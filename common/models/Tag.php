@@ -5,6 +5,7 @@ namespace common\models;
 use yii\db\ActiveRecord;
 
 /**
+ * @property int $id
  * @property string $title
  * @property Post[] $posts
  */

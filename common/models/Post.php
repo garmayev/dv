@@ -73,11 +73,11 @@ class Post extends ActiveRecord
         }
 
         foreach ($tags as $tag) {
-            if (intval($tag) !== false) {
+            \Yii::error(intval($tag));
+            if (intval($tag) !== 0) {
                 $tag = Tag::findOne($tag);
             } else {
-                $tag = new Tag();
-                $tag->title = $tag;
+                $tag = new Tag(['title' => $tag]);
                 $tag->save();
             }
             $this->link('tags', $tag);

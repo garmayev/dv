@@ -1,6 +1,9 @@
 <?php
 
 use common\models\Post;
+use common\models\Tag;
+use kartik\select2\Select2;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use yii\web\View;
 use yii\helpers\Html;
@@ -27,6 +30,17 @@ echo $form->field($model, 'text')->widget(\vova07\imperavi\Widget::class, [
             'fullscreen',
             'imagemanager',
         ],
+    ]
+]);
+
+echo $form->field($model, 'tags')->widget(Select2::class, [
+    'data' => ArrayHelper::map(Tag::find()->all(), 'id', 'title'),
+    'options' => [
+        'multiple' => true,
+    ],
+    'pluginOptions' => [
+        'tags' => true,
+        'tokenSeparators' => [','],
     ]
 ]);
 

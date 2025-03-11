@@ -21,6 +21,9 @@ $branch = \common\models\Branch::findOne(\Yii::$app->session->get('branch'));
     <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
+    <script>
+        window.site_lang = "ru";
+    </script>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>
@@ -99,7 +102,6 @@ $branch = \common\models\Branch::findOne(\Yii::$app->session->get('branch'));
 
         // global JS params
         window.__webpack_public_path__ = "/dist/";
-        window.site_lang = "ru";
 
     </script>
     <style>
