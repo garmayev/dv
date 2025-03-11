@@ -24,8 +24,10 @@ echo $form->field($model, 'address')->textInput();
 
 echo $form->field($model, 'email')->textInput();
 
+//var_dump( \yii\helpers\ArrayHelper::map($model->phones) )
+
 echo $form->field($model, 'phones')->widget(\kartik\select2\Select2::class, [
-    'data' => \yii\helpers\ArrayHelper::map($model->phones, 'id', 'content'),
+    'data' => \yii\helpers\ArrayHelper::map($model->phones, 'id', 'number'),
     'options' => [
         'multiple' => true,
     ],
@@ -33,7 +35,7 @@ echo $form->field($model, 'phones')->widget(\kartik\select2\Select2::class, [
         'allowClear' => true,
         'tags' => true,
         'tokenSeparators' => [','],
-        'maximumInputLength' => 2
+        'maximumInputLength' => 12
     ]
 ]);
 

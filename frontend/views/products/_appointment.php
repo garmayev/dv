@@ -3,6 +3,7 @@
  * @var string $theme
  */
 
+\Yii::$app->session->open();
 ?>
 <div class="appointment-form">
     <div class="wrapper wrap-pl-1 wrap-pr-1">
@@ -98,162 +99,21 @@
                                         data-select-search="true" required="" data-select2-id="PROP_REGION_SELECT"
                                         tabindex="-1" aria-hidden="true">
                                     <option label="Например, Московская область"></option>
-                                    <option value="1846">
-                                        Республика Башкортостан
-                                    </option>
-                                    <option value="2321">
-                                        Республика Мордовия
-                                    </option>
-                                    <option value="2349">
-                                        Чувашская Республика
-                                    </option>
-                                    <option value="2032">
-                                        Приморский край
-                                    </option>
-                                    <option value="1844">
-                                        Тюменская область
-                                    </option>
-                                    <option value="1596">
-                                        Воронежская область
-                                    </option>
-                                    <option value="2458">
-                                        Кировская область
-                                    </option>
-                                    <option value="2027">
-                                        Свердловская область
-                                    </option>
-                                    <option value="1617">
-                                        Краснодарский край
-                                    </option>
-                                    <option value="2301">
-                                        Республика Крым
-                                    </option>
-                                    <option value="2039">
-                                        Саратовская область
-                                    </option>
-                                    <option value="1608">
-                                        Республика Бурятия
-                                    </option>
-                                    <option value="1587">
-                                        Московская область
-                                    </option>
-                                    <option value="1602">
-                                        Алтайский край
-                                    </option>
-                                    <option value="1610" data-select2-id="2">
-                                        Ростовская область
-                                    </option>
-                                    <option value="22247">
-                                        Чеченская Республика
-                                    </option>
-                                    <option value="24739">
-                                        Республика Ингушетия
-                                    </option>
-                                    <option value="2036">
-                                        Волгоградская область
-                                    </option>
-                                    <option value="1583">
-                                        Костромская область
-                                    </option>
-                                    <option value="1606">
-                                        Тульская область
-                                    </option>
-                                    <option value="2030">
-                                        Республика Удмуртия
-                                    </option>
-                                    <option value="1590">
-                                        Курская область
-                                    </option>
-                                    <option value="1604">
-                                        Орловская область
-                                    </option>
-                                    <option value="1594">
-                                        Белгородская область
-                                    </option>
-                                    <option value="2135">
-                                        Пермский край
-                                    </option>
-                                    <option value="2034">
-                                        Ставропольский край
-                                    </option>
-                                    <option value="2038">
-                                        Пензенская область
-                                    </option>
-                                    <option value="1607">
-                                        Калужская область
-                                    </option>
-                                    <option value="1609">
-                                        Рязанская область
-                                    </option>
-                                    <option value="2041">
-                                        Ленинградская Область
-                                    </option>
-                                    <option value="2527">
-                                        Калининградская область
-                                    </option>
-                                    <option value="1586">
-                                        Смоленская область
-                                    </option>
-                                    <option value="1582">
-                                        Ярославская область
-                                    </option>
-                                    <option value="1601">
-                                        Ивановская область
-                                    </option>
-                                    <option value="1603">
-                                        Владимирская область
-                                    </option>
-                                    <option value="2347">
-                                        Нижегородская область
-                                    </option>
-                                    <option value="25124">
-                                        Республика Марий Эл
-                                    </option>
-                                    <option value="2040">
-                                        Республика Татарстан
-                                    </option>
-                                    <option value="1588">
-                                        Омская область
-                                    </option>
-                                    <option value="1585">
-                                        Иркутская область
-                                    </option>
-                                    <option value="2031">
-                                        Курганская область
-                                    </option>
-                                    <option value="2029">
-                                        Оренбургская область
-                                    </option>
-                                    <option value="1593">
-                                        Тамбовская область
-                                    </option>
-                                    <option value="1597">
-                                        Липецкая область
-                                    </option>
-                                    <option value="1581">
-                                        Новосибирская область
-                                    </option>
-                                    <option value="1592">
-                                        Красноярский край
-                                    </option>
-                                    <option value="1599">
-                                        Забайкальский край
-                                    </option>
-                                    <option value="2033">
-                                        Амурская область
-                                    </option>
-                                    <option value="2336">
-                                        Хабаровский край
-                                    </option>
-                                    <option value="1595">
-                                        Томская область
-                                    </option>
-                                    <option value="2028">
-                                        Челябинская область
-                                    </option>
-                                    <option value="2035">
-                                        Самарская область
-                                    </option>
+<?php
+$branch = common\models\Branch::findOne(\Yii::$app->session->get('branch'));
+// Branch::findOne($_SESSION['branch']);
+
+$allBranches = common\models\Branch::find()->all();
+
+foreach (\yii\helpers\ArrayHelper::map($allBranches, 'region', 'region') as $key => $item) {
+    $isSelected = $branch->region === $key ? "selected" : "";
+    echo "<option value='$key' $isSelected>$item</option>";
+}
+
+$this->registerJs(<<<JS
+    $("#credit-prop-direction").val( "$branch->region" )
+JS);
+?>
                                 </select>
                             </div>
                         </div>
