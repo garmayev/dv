@@ -12,6 +12,8 @@ use yii\db\ActiveRecord;
  * @property string $summary
  * @property integer $created_at
  * @property boolean $is_file
+ *
+ * @property Tag[] $tags
  */
 class Post extends ActiveRecord
 {
@@ -41,7 +43,8 @@ class Post extends ActiveRecord
             [['image', 'title', 'text', 'summary'], 'string'],
             [['created_at'], 'integer'],
             [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, svg'],
-            [['is_file'], 'boolean']
+            [['is_file'], 'boolean'],
+            [['tags'], 'safe'],
         ];
     }
 
@@ -55,6 +58,30 @@ class Post extends ActiveRecord
             'file' => \Yii::t('backend', 'File'),
             'is_file' => \Yii::t('backend', 'Is File'),
         ];
+    }
+
+    public function getTags()
+    {
+        return $this->hasMany(Tag::class, ['id' => 'tag_id'])->viaTable('{{%post_tag}}', ['post_id' => 'id']);
+    }
+
+    public function setTags($tags)
+    {
+        $this->save(false);
+        foreach ($this->tags as $tag) {
+            $this->unlink('tags', $tag, true);
+        }
+
+        foreach ($tags as $tag) {
+            if (intval($tag) !== false) {
+                $tag = Tag::findOne($tag);
+            } else {
+                $tag = new Tag();
+                $tag->title = $tag;
+                $tag->save();
+            }
+            $this->link('tags', $tag);
+        }
     }
 
     public function beforeDelete()

@@ -59,6 +59,9 @@ class PostController extends Controller
         return $this->render('index', [
             'dataProvider' => new ActiveDataProvider([
                 'query' => Post::find()
+            ]),
+            'tagProvider' => new ActiveDataProvider([
+                'query' => Tag::find()
             ])
         ]);
     }

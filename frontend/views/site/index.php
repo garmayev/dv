@@ -319,7 +319,6 @@ $this->title = "{$name->value} - официальный дилер техник�
                                 $b[$branch->region][] = $branch;
                             }
                             foreach ($b as $region => $c) {
-                                $cleanPhone = preg_replace('/[\ \(\)\+\-]/', '', $branch->phone);
 
                                 echo "<p class=\"h3 my-16\">{$region}</p>";
                                 foreach ($c as $branch) {
@@ -342,7 +341,10 @@ $this->title = "{$name->value} - официальный дилер техник�
                                         </div>
                                     </div>
                                     <div class='map-search-box__row'>
-                                        <div class='map-search-box__label'>
+                                    ";
+                                    foreach ($branch->phones as $phone) {
+                                        $cleanPhone = preg_replace('/[\ \(\)\+\-]/', '', $phone->number);
+                                        echo "<div class='map-search-box__label'>
                                             <div class='map-search-box__label-ico'>
                                                 <svg width='16' height='17' viewBox='0 0 16 17' fill='none'
                                                      xmlns='http://www.w3.org/2000/svg'>
@@ -352,11 +354,12 @@ $this->title = "{$name->value} - официальный дилер техник�
                                                 </svg>
                                             </div>
                                             <div class='map-search-box__label-text'>
-                                                <a href='tel:{$cleanPhone}' class='text-link text-default'>{$branch->phone}</a>
+                                                <a href='tel:{$cleanPhone}' class='text-link text-default'>{$phone->number}</a>
                                             </div>
-                                        </div>
+                                        </div>";
+                                    }
 
-                                        <div class='map-search-box__label'>
+                                        echo "<div class='map-search-box__label'>
 
                                             <div class='map-search-box__label-ico'>
                                                 <svg width='16' height='14' viewBox='0 0 16 14' fill='none'

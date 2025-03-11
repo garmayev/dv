@@ -14,7 +14,7 @@ class m250308_034018_create_phone_table extends Migration
     {
         $this->createTable('{{%phone}}', [
             'id' => $this->primaryKey(),
-            'content' => $this->string(),
+            'number' => $this->string(),
             'branch_id' => $this->integer()
         ]);
 
@@ -40,7 +40,7 @@ class m250308_034018_create_phone_table extends Migration
     public function safeDown()
     {
         $this->dropForeignKey('{{%fk-phone-branch_id}}', '{{%phone}}');
-        $this->fropIndex('{{%idx-phone-branch_id}}', '{{%phone}}');
+        $this->dropIndex('{{%idx-phone-branch_id}}', '{{%phone}}');
         $this->dropTable('{{%phone}}');
     }
 }

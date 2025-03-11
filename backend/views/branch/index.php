@@ -16,9 +16,9 @@ $this->title = \Yii::t('backend', 'Branches');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<div>
-    <?= \yii\helpers\Html::a(\Yii::t('backend', 'Create Branch'), ['/branch/create'], ['class' => 'btn btn-success']) ?>
-</div>
+    <div>
+        <?= \yii\helpers\Html::a(\Yii::t('backend', 'Create Branch'), ['/branch/create'], ['class' => 'btn btn-success']) ?>
+    </div>
 
 <?php
 echo GridView::widget([
@@ -33,7 +33,12 @@ echo GridView::widget([
         ],
         'title',
         'address',
-        'phone',
+        [
+            'attribute' => 'phones',
+            'value' => function ($model) {
+                return implode(', ', \yii\helpers\ArrayHelper::map($model->phones, 'id', 'number'));
+            }
+        ],
         'email',
         [
             'class' => ActionColumn::class

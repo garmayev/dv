@@ -22,9 +22,20 @@ echo $form->field($model, 'city')->textInput();
 
 echo $form->field($model, 'address')->textInput();
 
-echo $form->field($model, 'phone')->textInput();
-
 echo $form->field($model, 'email')->textInput();
+
+echo $form->field($model, 'phones')->widget(\kartik\select2\Select2::class, [
+    'data' => \yii\helpers\ArrayHelper::map($model->phones, 'id', 'content'),
+    'options' => [
+        'multiple' => true,
+    ],
+    'pluginOptions' => [
+        'allowClear' => true,
+        'tags' => true,
+        'tokenSeparators' => [','],
+        'maximumInputLength' => 2
+    ]
+]);
 
 echo $form->field($model, 'latitude')->textInput();
 
