@@ -60,6 +60,21 @@ class Post extends ActiveRecord
         ];
     }
 
+    public function fields()
+    {
+        return [
+            'id',
+            'title',
+            'summary',
+            'text',
+            'created_at',
+            'image',
+            'tags' => function ($model) {
+                return $model->tags;
+            }
+        ];
+    }
+
     public function getTags()
     {
         return $this->hasMany(Tag::class, ['id' => 'tag_id'])->viaTable('{{%post_tag}}', ['post_id' => 'id']);

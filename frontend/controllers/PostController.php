@@ -20,7 +20,6 @@ use frontend\models\ContactForm;
  */
 class PostController extends Controller
 {
-
     /**
      * {@inheritdoc}
      */
@@ -44,6 +43,10 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
+        if (\Yii::$app->request->getIsAjax()) {
+            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return Post::find()->all();
+        }
         $this->layout = "main";
 
         return $this->render('index', [

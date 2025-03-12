@@ -8,36 +8,42 @@ use common\models\Post;
  * @var Post $model
  */
 
-$this->title = "Новости"
+$this->title = "Новости";
+$this->registerJsFile("/js/tagController.js");
 ?>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        tagController = new TagController(".news-list__list")
+        console.log(tagController._filtered)
         setTheme("black")
 
-        let selectedYear, selectedMonth, selectedTag;
+        let currentDate = new Date(), selectedYear = currentDate.getFullYear(), selectedMonth = currentDate.getMonth() + 1, selectedTag;
         const tagSelector = $("#TAG_SELECT");
         const monthSelector = $("#PROPERTY_DATE_START_MONTH");
         const yearSelector = $("#PROPERTY_DATE_START_YEAR");
         const filter = () => {
+            $(".filter-tag-list").innerHTML = "";
             const cards = $('.card-news');
             cards.hide()
-            cards.each(function (index) {
-                if (selectedYear && Number.parseInt($(this).data('year')) === selectedYear) {
-                    $(this).show();
-                }
-                if (selectedMonth && Number.parseInt($(this).data('month')) === selectedMonth) {
-                    $(this).show();
-                }
-                $(this).filter(`[data-tags*='${selectedTag.join(", ")}']`).show()
-            })
+            let elem = $(".card-news"), attrString = [];
+            for (const key in selectedTag) {
+                attrString.push(`[data-tags*='${selectedTag[key]}'][data-month=${selectedMonth}][data-year=${selectedYear}]`);
+                $(".filter-tag-list").append()
+            }
+            console.log(attrString.join(","))
+            elem.filter(attrString.join(","))
+                .show()
         }
 
         $("#data-form-clear").on("click", () => {
             $('.card-news').show();
+            selectedTag = undefined;
             selectedMonth = undefined;
             selectedYear = undefined;
         })
-        tagSelector.on("select2:select", (event) => {
+
+        monthSelector.val(currentDate.getMonth() + 1)
+        tagSelector.on("change", (event) => {
             selectedTag = tagSelector.val()
             filter()
         })
@@ -125,12 +131,12 @@ $this->title = "Новости"
                                                         data-select-theme="light" data-select-placeholder="Все рубрики"
                                                         multiple="multiple" data-parsley-multiple="SECTION_ID"
                                                         data-select2-id="SECTION_ID" tabindex="-1" aria-hidden="true">
-<?php
-$tags = \common\models\Tag::find()->all();
-foreach ($tags as $tag) {
-    echo '<option value="' . $tag->title . '">' . $tag->title . '</option>';
-}
-?>
+                                                    <?php
+                                                    $tags = \common\models\Tag::find()->all();
+                                                    foreach ($tags as $tag) {
+                                                        echo '<option selected="selected" value="' . $tag->title . '">' . $tag->title . '</option>';
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -148,18 +154,18 @@ foreach ($tags as $tag) {
                                                         data-select2-id="PROPERTY_DATE_START_YEAR" tabindex="-1"
                                                         aria-hidden="true">
                                                     <option label="Выберите год"></option>
-<?php
-$start = 2020;
-$end = intval(date('Y'));
-for ($i = $end; $i >= $start; $i--) {
-    if ($i == $end) {
-        $selected = 'selected="selected"';
-    } else {
-        $selected = '';
-    }
-    echo "<option value='$i' $selected>$i</option>";
-}
-?>
+                                                    <?php
+                                                    $start = 2020;
+                                                    $end = intval(date('Y'));
+                                                    for ($i = $end; $i >= $start; $i--) {
+                                                        if ($i == $end) {
+                                                            $selected = 'selected="selected"';
+                                                        } else {
+                                                            $selected = '';
+                                                        }
+                                                        echo "<option value='$i' $selected>$i</option>";
+                                                    }
+                                                    ?>
                                                 </select>
                                             </div>
                                         </div>
@@ -177,42 +183,28 @@ for ($i = $end; $i >= $start; $i--) {
                                                         data-select2-id="PROPERTY_DATE_START_MONTH" tabindex="-1"
                                                         aria-hidden="true">
                                                     <option label="Выберите месяц"></option>
-                                                    <option value="01">
-                                                        Январь
-                                                    </option>
-                                                    <option value="02">
-                                                        Февраль
-                                                    </option>
-                                                    <option value="03" selected="" data-select2-id="5">
-                                                        Март
-                                                    </option>
-                                                    <option value="04">
-                                                        Апрель
-                                                    </option>
-                                                    <option value="05">
-                                                        Май
-                                                    </option>
-                                                    <option value="06">
-                                                        Июнь
-                                                    </option>
-                                                    <option value="07">
-                                                        Июль
-                                                    </option>
-                                                    <option value="08">
-                                                        Август
-                                                    </option>
-                                                    <option value="09">
-                                                        Сентябрь
-                                                    </option>
-                                                    <option value="10">
-                                                        Октябрь
-                                                    </option>
-                                                    <option value="11">
-                                                        Ноябрь
-                                                    </option>
-                                                    <option value="12">
-                                                        Декабрь
-                                                    </option>
+<?php
+$months = [
+    "Январь",
+    "Февраль",
+    "Март",
+    "Апрель",
+    "Май",
+    "Июнь",
+    "Июль",
+    "Август",
+    "Сентябрь",
+    "Октябрь",
+    "Ноябрь",
+    "Декабрь"
+];
+$currentDate = intval(date("m"));
+foreach ($months as $key => $month) {
+    $monthNum = $key + 1;
+    $selectedMonth = $currentDate == $key ? "selected='selected'" : "";
+    echo "<option value='{$monthNum}' $selected>$month</option>";
+}
+?>
                                                 </select>
                                             </div>
                                         </div>
@@ -256,14 +248,6 @@ for ($i = $end; $i >= $start; $i--) {
 </div>
 
 <div class="case_reload_area">
-    <script data-test-script="">
-        window.pagenav = {
-            navRecordCount: "7",
-            navPageNomer: "8",
-            navPageSize: "8",
-            nEndPage: "1"
-        };
-    </script>
     <div class="news-list">
         <div class="news-list__list">
             <?php

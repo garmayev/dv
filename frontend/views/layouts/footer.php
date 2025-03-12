@@ -1,6 +1,5 @@
 <?php
 $branch = \common\models\Branch::findOne(\Yii::$app->session->get('branch'));
-$cleanPhone = preg_replace('/[\ \(\)\+\-]/', '', $branch->phone);
 $this->registerCss(<<<CSS
 @media (min-width: 990px) {
     .footer__main-grid {
@@ -26,11 +25,19 @@ CSS
     <div class="footer__contacts">
         <div class="footer__contacts-wrapper wrapper wrap-pr-1 wrap-pl-1">
             <ul class="footer__contacts-list">
-                <li class="footer__contacts-item" data-animate="">
-                    <span class="footer__contacts-item-label text-default">Телефон</span>
-                    <a class="footer__contacts-item-link" href="tel:<?= $cleanPhone ?>" data-link-animate="">
-                        <?= $branch->phone ?></a>
+                <?php
+foreach ($branch->phones as $key => $phone) {
+    $cleanPhone = preg_replace('/[\ \(\)\+\-]/', '', $phone->number);
+    $title = $key === 0 ? "<span class='footer__contacts-item-label text-default'>Телефон</span>" : "";
+    echo "
+                    <li class='footer__contacts-item' data-animate=''>
+                    $title
+                    <a class='footer__contacts-item-link' href='tel:{$cleanPhone}' data-link-animate=''>
+                        {$phone->number}</a>
                 </li>
+";
+}
+                ?>
                 <li class="footer__contacts-write-us" data-animate="" data-animate-delay="2">
                     <a href="#write_us" class="btn btn--empty btn--hover-white btn--large" data-modal=""
                        data-effect="mfp-move-from-left">
