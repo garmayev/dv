@@ -33,6 +33,8 @@ echo $form->field($model, 'text')->widget(\vova07\imperavi\Widget::class, [
     ]
 ]);
 
+echo $form->field($model, 'date')->input('date', ['value' => date('Y-m-d', $model->created_at)]);
+
 echo $form->field($model, 'tags')->widget(Select2::class, [
     'data' => ArrayHelper::map(Tag::find()->all(), 'id', 'title'),
     'options' => [

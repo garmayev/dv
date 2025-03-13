@@ -72,6 +72,7 @@ class PostController extends Controller
         $model = new Post();
 
         if (\Yii::$app->request->isPost) {
+            \Yii::error(\Yii::$app->request->post());
             $model->load(\Yii::$app->request->post());
             $model->file = UploadedFile::getInstance($model, 'file');
             if ($model->upload() && $model->save()) {

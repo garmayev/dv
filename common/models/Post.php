@@ -12,7 +12,7 @@ use yii\db\ActiveRecord;
  * @property string $summary
  * @property integer $created_at
  * @property boolean $is_file
- *
+ * @property $date
  * @property Tag[] $tags
  */
 class Post extends ActiveRecord
@@ -44,7 +44,7 @@ class Post extends ActiveRecord
             [['created_at'], 'integer'],
             [['file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, svg'],
             [['is_file'], 'boolean'],
-            [['tags'], 'safe'],
+            [['tags', 'date'], 'safe'],
         ];
     }
 
@@ -88,7 +88,6 @@ class Post extends ActiveRecord
         }
 
         foreach ($tags as $tag) {
-            \Yii::error(intval($tag));
             if (intval($tag) !== 0) {
                 $tag = Tag::findOne($tag);
             } else {
@@ -119,5 +118,15 @@ class Post extends ActiveRecord
             }
         }
         return true;
+    }
+
+    public function getDate()
+    {
+        return \Yii::$app->formatter->asDate($this->created_at);
+    }
+
+    public function setDate($value)
+    {
+        $this->created_at = \Yii::$app->formatter->asTimestamp($value);
     }
 }
