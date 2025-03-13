@@ -37,5 +37,4 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector('.footer__button-top').addEventListener('click', () => {
         window.scrollTo(0, 0);
     })
-    $.fn.select2.defaults.set('language', 'ru-RU');
 })

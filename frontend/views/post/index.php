@@ -13,8 +13,8 @@ $this->registerJsFile("/js/tagController.js");
 ?>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        tagController = new TagController(".news-list__list")
-        console.log(tagController._filtered)
+//        tagController = new TagController(".news-list__list")
+//        console.log(tagController._filtered)
         setTheme("black")
 
         let currentDate = new Date(), selectedYear = currentDate.getFullYear(), selectedMonth = currentDate.getMonth() + 1, selectedTag;

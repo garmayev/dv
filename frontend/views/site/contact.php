@@ -50,11 +50,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= $branch->title ?><br><?= $branch->address ?>
             </div>
             <div class="map-box__bottom-contacts text-default">
-                <div class="map-box__bottom-contact">
-                    <a href="tel:<?= $cleanPhone ?>" class="text-link text-default text-link--white">
-                        <?= $branch->phone ?>
-                    </a>
-                </div>
+<?php
+foreach ($branch->phones as $key => $phone) {
+    $clean = preg_replace('/[\ \(\)\+]/', '', $phone->number);
+    echo "<div class='map-box__bottom-contact'>
+    <svg width='16' height='17' viewBox='0 0 16 17' fill='none' xmlns='http://www.w3.org/2000/svg'>
+        <path d='M11.4668 11.2183L10.9459 11.9997C10.8419 12.1557 10.7044 12.2888 10.5232 12.3367C9.92955 12.4935 8.35357 12.5643 5.95418 10.165C3.5548 7.76558 3.62562 6.18957 3.78247 5.59595C3.83036 5.41473 3.96343 5.27721 4.11941 5.17324L4.9008 4.65231C5.48256 4.26447 5.63976 3.47845 5.25192 2.89669L3.77613 0.683018C3.43761 0.175236 2.78501 -0.0187664 2.22407 0.221636L1.55833 0.506948C1.0526 0.723692 0.640069 1.11267 0.39401 1.60479C0.188432 2.01595 0.029095 2.44892 0.00750637 2.90811C-0.0605285 4.35515 0.256773 7.92026 4.22783 11.8913C8.19889 15.8624 11.764 16.1796 13.211 16.1116C13.6702 16.09 14.1032 15.9306 14.5144 15.7251C15.0065 15.4791 15.3954 15.0665 15.6122 14.5607L15.8975 13.8951C16.1379 13.3341 15.9439 12.6815 15.4361 12.343L13.2224 10.8672C12.6407 10.4794 11.8547 10.6366 11.4668 11.2183Z' fill='#B3B9BD'></path>
+    </svg>
+    <a href='tel:<?= $clean ?>' class='text-link text-default text-link--white'>{$phone->number}</a>
+</div>";
+}
+?>
                 <div class="map-box__bottom-contact">
                     <a href="mailto:<?= $branch->email ?>"
                        class="text-link text-default text-link--white"><?= $branch->email ?></a>
@@ -83,7 +89,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 $b[$branch->region][] = $branch;
             }
             foreach ($b as $region => $c) {
-                $cleanPhone = preg_replace('/[\ \(\)\+]/', '', $branch->phone);
                 echo "<p class='h3 my-16'>{$region}</p>";
                 foreach ($c as $branch) {
                     echo "
@@ -105,10 +110,15 @@ $this->params['breadcrumbs'][] = $this->title;
                 </svg>
                 Телефон
             </div>
-            <div class='contacts-table__list'>
+            <div class='contacts-table__list'>";
+                    foreach ($branch->phones as $phone) {
+                        $cleanPhone = preg_replace('/[\ \(\)\+]/', '', $phone->number);
+                        echo "
                 <div class='contacts-table__contact-link'>
-                    <a href='tel:{$cleanPhone}' class='text-link text-default'>{$branch->phone}</a>
-                </div>
+                    <a href='tel:{$cleanPhone}' class='text-link text-default'>{$phone->number}</a>
+                </div>";
+                    }
+                    echo "
                 <div class='contacts-table__label mt-16'>
                     <svg width='16' height='16' viewBox='0 0 16 16' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
                         <path fill-rule='evenodd' clip-rule='evenodd' d='M13.6972 2.66666H2.30278C1.58327 2.66666 1 3.24993 1 3.96943C1 4.40502 1.21769 4.81179 1.58013 5.05341L2.71258 5.80838L6.3359 8.22392C7.3436 8.89572 8.6564 8.89572 9.6641 8.22392L13.2874 5.80838L14.4199 5.05341C14.7823 4.81179 15 4.40502 15 3.96943C15 3.24993 14.4167 2.66666 13.6972 2.66666ZM1.33333 8.33332C1.33333 8.21116 1.34064 8.0907 1.35483 7.97236C1.42522 7.38534 2.11021 7.20957 2.60214 7.53752L5.50385 9.472C7.0154 10.4797 8.9846 10.4797 10.4962 9.472L13.3979 7.53752C13.8898 7.20957 14.5748 7.38534 14.6452 7.97236C14.6594 8.0907 14.6667 8.21116 14.6667 8.33332V11.3333C14.6667 12.4379 13.7712 13.3333 12.6667 13.3333H3.33333C2.22876 13.3333 1.33333 12.4379 1.33333 11.3333V8.33332Z' fill='#B3B9BD'></path>

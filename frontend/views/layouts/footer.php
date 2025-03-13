@@ -108,10 +108,13 @@ foreach ($branch->phones as $key => $phone) {
                         <p class="subscribe-descr text-default">Официальный дилер
                             Ростсельмаш<br/> "АгроТехника-ДВ"</p>
                     </li>
-                    <li class="footer__action">
-                        <a href="tel:<?= $cleanPhone ?>" class="text-link text-default"
-                           target="_blank"><?= $branch->phone ?></a>
-                    </li>
+<?php
+foreach ($branch->phones as $key => $phone) {
+    $cleanPhone = preg_replace('/[\ \(\)\+\-]/', '', $phone->number);
+    $title = $key === 0 ? "<span class='footer__contacts-item-label text-default'>Телефон</span>" : "";
+    echo "<li class='footer__action'><a href='tel:$cleanPhone' class='text-link text-default' target='_blank'>{$phone->number}</a></li>";
+}
+?>
                     <li class="footer__action">
                         <a href="mailto:<?= $branch->email ?>" class="text-link text-default"
                            target="_blank"><?= $branch->email ?></a>
