@@ -10,15 +10,22 @@ use yii\web\View;
 
 $this->title = $model->name;
 ?>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        setTheme('white')
+    })
+</script>
 <div class="hero-main">
     <div class="hero-main__wrap">
         <div class="main-slider" data-autoplay="7000">
             <canvas class="main-slider__canvas"></canvas>
 
             <?php
+//var_dump($model->image);
             echo $this->render('_slider', [
                 'slides' => $model->slides,
                 'parent' => $model->section,
+                'image' => $model->image
             ]);
             ?>
         </div>

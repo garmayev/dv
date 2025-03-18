@@ -20,17 +20,6 @@ class Post extends ActiveRecord
     public $file;
     public $is_file;
 
-    public function behaviors(): array
-    {
-        return [
-            'timestamp' => [
-                'class' => TimestampBehavior::class,
-                'createdAtAttribute' => 'created_at',
-                'updatedAtAttribute' => false,
-            ]
-        ];
-    }
-
     public static function tableName(): string
     {
         return '{{%post}}';

@@ -17,6 +17,13 @@ if ( !\Yii::$app->session->has('branch') ) {
     \Yii::$app->response->redirect(['/site/index']);
 }
 $branch = \common\models\Branch::findOne(\Yii::$app->session->get('branch'));
+$this->registerJs(<<<JS
+    $("#credit-prop-direction").val( "$branch->region" )
+    $("#lending-prop-direction").val( "$branch->region" )
+    $("#insurance-prop-direction").val( "$branch->region" )
+    $("#invite-prop-region").val( "$branch->region" )
+JS);
+
 ?>
     <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" class="h-100">
@@ -221,16 +228,17 @@ $this->endBody();
                 e.preventDefault();
                 return false; // Don't submit form for this demo
             });
-        $('a[href="#technic-invite"]').on('click', (event) => {
+/*        $('a[href="#technic-invite"]').on('click', (event) => {
             let id = $(event.target).attr('data-key');
+            console.log(id);
             $.ajax(`/products/ajax?id=` + id, {
                 success: (response) => {
                     console.log(response)
-                    $('[name="PROP_PRODUCT_NAME"]').val(response.name)
-                    $('[name="PROP_PRODUCT_ID"]').val(response.id)
+                    $('[name="PROP_PRODUCT_NAME"]').val(response?.name)
+                    $('[name="PROP_PRODUCT_ID"]').val(response?.id)
                 }
             });
-        })
+        }) */
     })
 </script>
             <div class="modal mfp-hide mfp-with-anim modal--application" id="leasing">
@@ -323,15 +331,14 @@ $this->endBody();
                                                                 aria-hidden="true">
                                                             <option label="Например, Московская область"></option>
 <?php
-foreach (\Yii::$app->params['regions'] as $key => $item) {
+$branches = \common\models\Branch::find()->all();
+$regions = \yii\helpers\ArrayHelper::map($branches, 'region', 'region');
+foreach ($regions as $key => $item) {
     $isSelected = $branch->region === $key ? "selected" : "";
     echo "<option value='$key' $isSelected>$item</option>";
 }
 
-$this->registerJs(<<<JS
-    $("#credit-prop-direction").val( "$branch->region" )
-JS);
-                                                            ?>
+?>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -341,13 +348,11 @@ JS);
                                             <div class="form-layout__field">
                                                 <div class="field theme-light">
                                                     <div class="control">
-                                                        <select class="select select2-hidden-accessible"
-                                                                name="PROP_BANK" data-select="Ростсельмаш Финанс"
-                                                                data-select-theme="light"
-                                                                data-select-placeholder="Выберите банк"
-                                                                data-select-search="false" required=""
-                                                                tabindex="-1"
-                                                                aria-hidden="true">
+                                                        <select id="PROP_BANK" class="select select2-hidden-accessible" 
+                                                            name="PROP_BANK" data-select="" data-select-size="default" 
+                                                            data-select-theme="light" data-select-placeholder="Выберите банк" 
+                                                            data-select-search="true" required="" data-select2-id="PROP_BANK" 
+                                                            tabindex="-1" aria-hidden="true">
                                                             <option label="Выберите банк" data-select2-id="14"></option>
                                                             <option value="Ростсельмаш Финанс">
                                                                 Ростсельмаш Финанс
@@ -585,14 +590,13 @@ JS);
                                                                 aria-hidden="true">
                                                             <option label="Например, Московская область"></option>
 <?php
-foreach (\Yii::$app->params['regions'] as $key => $item) {
+$branches = \common\models\Branch::find()->all();
+$regions = \yii\helpers\ArrayHelper::map($branches, 'region', 'region');
+foreach ($regions as $key => $item) {
     $isSelected = $branch->region === $key ? "selected" : "";
     echo "<option value='$key' $isSelected>$item</option>";
 }
 
-$this->registerJs(<<<JS
-    $("#lending-prop-direction").val( "$branch->region" )
-JS);
 ?>
                                                         </select>
                                                     </div>
@@ -827,14 +831,13 @@ JS);
                                                                 aria-hidden="true">
                                                             <option label="Например, Московская область"></option>
 <?php
-foreach (\Yii::$app->params['regions'] as $key => $item) {
+$branches = \common\models\Branch::find()->all();
+$regions = \yii\helpers\ArrayHelper::map($branches, 'region', 'region');
+foreach ($regions as $key => $item) {
     $isSelected = $branch->region === $key ? "selected" : "";
     echo "<option value='$key' $isSelected>$item</option>";
 }
 
-$this->registerJs(<<<JS
-    $("#insurance-prop-direction").val( "$branch->region" )
-JS);
 ?>
                                                         </select>
                                                     </div>
@@ -1323,24 +1326,18 @@ JS);
                                             <div class="form-layout__field">
                                                 <div class="field theme-light">
                                                     <div class="control">
-                                                        <select class="select select2-hidden-accessible"
-                                                                id="invite-prop-direction"
-                                                                name="PROP_DIRECTION"
-                                                                data-select=""
-                                                                data-select-size="default" data-select-theme="light"
-                                                                data-select-placeholder="Например, Московская область"
-                                                                data-select-search="true" required="" tabindex="-1"
-                                                                aria-hidden="true">
+                                                        <select id="invite-prop-region" class="select select2-hidden-accessible" name="PROP_REGION" 
+                                                            data-select="" data-select-size="default" data-select-theme="light" 
+                                                            data-select-placeholder="Например, Московская область" data-select-search="false" required="" 
+                                                            data-select2-id="invite-prop-region-select" tabindex="-1" aria-hidden="true">
                                                             <option label="Например, Московская область"></option>
 <?php
-foreach (\Yii::$app->params['regions'] as $key => $item) {
+$branches = \common\models\Branch::find()->all();
+$regions = \yii\helpers\ArrayHelper::map($branches, 'region', 'region');
+foreach ($regions as $key => $item) {
     $isSelected = $branch->region === $key ? "selected" : "";
     echo "<option value='$key' $isSelected>$item</option>";
 }
-
-$this->registerJs(<<<JS
-    $("#invite-prop-direction").val( "$branch->region" )
-JS);
 ?>
                                                         </select>
                                                     </div>

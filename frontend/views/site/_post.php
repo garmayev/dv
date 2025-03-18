@@ -20,9 +20,8 @@ use yii\helpers\Url;
 
             <div class="card__info">
                 <div class="card__info-wrap">
-                    <div class="card__date" data-animate-lines=""><?= \Yii::$app->formatter->asDate($model->created_at, 'dd.MM.yyyy') ?></div>
-
-                    <div class="card__title text-lead" data-animate-lines="" itemprop="name">
+                    <div class="card__date" ><?= \Yii::$app->formatter->asDate($model->created_at, "php:Y.m.d") ?></div>
+                    <div class="card__title text-lead" itemprop="name">
                         <?= $model->title ?>
                     </div>
                 </div>

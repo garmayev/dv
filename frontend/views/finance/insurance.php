@@ -120,7 +120,7 @@ echo $this->render('_menu');
                     <a href="https://www.rshbins.ru/" rel="nofollow sponsored" class="card-partner__link" target="_blank"></a>
                     <div class="card-partner__inner">
                         <div class="card-partner__logo mb-24">
-                            <img class="image is-lazy is-loaded" src="https://rostselmash.com/upload/iblock/b24/b245ae72a5bc6c658e816b49852d2e8b.png" data-src="/upload/iblock/b24/b245ae72a5bc6c658e816b49852d2e8b.png" alt="АО СК «РСХБ-Страхование»" data-ll-status="loaded">
+                            <img class="image is-lazy is-loaded" src="https://rostselmash.com/upload/iblock/a28/k8nhzdja838o2tstvkzzdckq29k84eyn/Лого в кривых.png" data-src="https://rostselmash.com/upload/iblock/a28/k8nhzdja838o2tstvkzzdckq29k84eyn/Лого в кривых.png" alt="АО СК «РСХБ-Страхование»" data-ll-status="loaded">
                         </div>
                         <div class="card-partner__title text-lead mb-16">АО СК «РСХБ-Страхование»</div>
                         <div class="card-partner__text text-default mb-16 mb-md-32"><p>

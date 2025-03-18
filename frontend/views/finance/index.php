@@ -96,15 +96,18 @@ echo $this->render('_menu');
             <div class="partners-list__item" data-animate="" data-animate-delay="1">
                 <div class="card-partner">
                     <a href="https://www.sberbank.ru/" rel="nofollow sponsored" class="card-partner__link" target="_blank"></a>
-                    <div class="card-partner__inner">
-                        <div class="card-partner__logo mb-24">
-                            <img class="image is-lazy" src="https://rostselmash.com/upload/iblock/3df/3df4b5746beeb1f8752b81200f24b950.svg" data-src="https://rostselmash.com/upload/iblock/3df/3df4b5746beeb1f8752b81200f24b950.svg" alt="ПАО Сбербанк России">
-                        </div>
-                        <div class="card-partner__title text-lead mb-16">ПАО Сбербанк России</div>
-                        <div class="card-partner__text text-default mb-16 mb-md-32"><p>
-                                ПАО Сбербанк России&nbsp;— крупнейший банк в&nbsp;России и&nbsp;один из&nbsp;ведущих глобальных финансовых институтов. На&nbsp;долю Сбербанка приходится около трети активов всего российского банковского сектора. Сбербанк является ключевым кредитором для национальной экономики и&nbsp;занимает крупнейшую долю на&nbsp;рынке вкладов. Учредителем и&nbsp;основным акционером ПАО «Сбербанк России» является Центральный банк Российской Федерации, владеющий&nbsp;50% уставного капитала плюс одна голосующая акция. Другими&nbsp;50% акций Банка владеют российские и&nbsp;международные инвесторы. Услугами Сбербанка пользуются более 110 млн физических лиц и&nbsp;около 1&nbsp;млн предприятий в&nbsp;20&nbsp;странах мира. Банк располагает самой обширной филиальной сетью в&nbsp;России: более 18&nbsp;тысяч отделений и&nbsp;внутренних структурных подразделений. Зарубежная сеть Банка состоит из&nbsp;дочерних банков, филиалов и&nbsp;представительств в&nbsp;Великобритании, США, СНГ, Центральной и&nbsp;Восточной Европе, Турции и&nbsp;других странах.
-                            </p></div>
-                        <div class="card-partner__facts">
+                        <div class="card-partner__inner">
+                            <div class="card-partner__logo mb-24">
+                                <img class="image is-lazy is-loaded" src="https://rostselmash.com/upload/iblock/3df/3df4b5746beeb1f8752b81200f24b950.svg" data-src="https://rostselmash.com/upload/iblock/3df/3df4b5746beeb1f8752b81200f24b950.svg" alt="ПАО Сбербанк России" data-ll-status="loaded">
+                            </div>
+                            <div class="card-partner__title text-lead mb-16">ПАО Сбербанк России</div>
+                            <div class="card-partner__text text-default mb-16 mb-md-32">
+                                <p>ПАО&nbsp;Сбербанк — один из крупнейших банков в России и один из ведущих глобальных финансовых институтов. </p>
+                                <p>На долю Сбербанка приходится около трети активов всего российского банковского сектора. Сбербанк является ключевым кредитором для национальной экономики и занимает одну из крупнейших долей на рынке вкладов. </p>
+                                <p>Основным акционером ПАО&nbsp;Сбербанк является Российская Федерация в лице Министерства&nbsp;финансов Российской&nbsp;Федерации, владеющая 50% уставного капитала ПАО Сбербанк плюс&nbsp;1 голосующая акция. Оставшимися 50%;минус&nbsp;1 голосующая акция от уставного капитала банка владеют российские и международные инвесторы. Генеральная лицензия Банка России на осуществление банковских операций №&nbsp;1481 от&nbsp;11.08.2015. </p>
+                                <p>Официальные сайты банка: www.sberbank.com (сайт Группы&nbsp;Сбербанк), www.sberbank.ru.</p>
+                            </div>
+                            <div class="card-partner__facts">
                         </div>
                     </div>
                 </div>

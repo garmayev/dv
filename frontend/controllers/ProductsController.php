@@ -37,7 +37,7 @@ class ProductsController extends \yii\web\Controller
                 'model' => $model,
             ])
             ->setFrom(\Yii::$app->params['adminEmail'])
-            ->setTo(\Yii::$app->params['companyEmail'])
+            ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
             ->setSubject('Заявка на технику')
             ->send();
         return $this->redirect(['/site/index']);

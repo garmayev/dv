@@ -35,6 +35,11 @@ $this->registerCss(<<<CSS
 }
 CSS);
 ?>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        setTheme('white')
+    })
+</script>
 <div class="hero-main video_banner">
     <div class="hero-main__wrap">
         <div>

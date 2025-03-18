@@ -46,7 +46,7 @@ class FinanceController extends Controller
                 'data' => $data,
             ])
             ->setFrom(\Yii::$app->params['adminEmail'])
-            ->setTo(\Yii::$app->params['companyEmail'])
+            ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
             ->setSubject($data['PROP_TYPE'])
             ->send();
         return $this->redirect(['/site/index']);

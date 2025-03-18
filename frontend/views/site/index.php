@@ -17,7 +17,6 @@ $this->title = "{$name->value} - официальный дилер техник�
             let target = e.target;
             let key = $(e.target).closest(".main-slider-slide").attr("data-key");
             $("[name=PROP_PRODUCT_ID]").val(key);
-            console.log(key);
         })
     })
 </script>
@@ -49,6 +48,11 @@ $this->title = "{$name->value} - официальный дилер техник�
             margin-top: -10px;
         }
     }
+@media (max-width: 639.98px) {
+    .main-slider-slide {
+        padding-top: 7rem;
+    }
+}
 </style>
 
 <div class="hero-main">

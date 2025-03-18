@@ -28,6 +28,16 @@ use common\models\Post;
 			 </ul>
 		      </nav>
 		      <h1 class="hero__title h3"><?= $model->title ?></h1>
+			    <div class="hero__factoids">
+				    <div class="factor animate" data-viewport-trigger="" data-animate="">
+					<div class="factor__text text-default "><?= \Yii::$app->formatter->asDate($model->created_at, "php:M") ?>, <?= \Yii::$app->formatter->asDate($model->created_at, "php:Y") ?></div>
+					<div class="factor__head">
+					    <span class="factor__number">
+						<span class="factor__number-value"><?= \Yii::$app->formatter->asDate($model->created_at, "php:d") ?></span>
+					    </span>
+					</div>
+				    </div>
+			    </div>
 		   </div>
 		</div>
 		<div class="content-wrapper wrap-pl-1 wrap-pr-1 content-wrapper--no-photo pinned" data-share-area="">

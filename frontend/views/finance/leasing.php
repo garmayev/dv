@@ -41,7 +41,7 @@ $this->title = 'Лизинг';
                         <li>не ухудшается отчетность.</li>
                     </ul></div>
                 <div class="block-text__actions block-text__actions--desktop mt-40 animate" data-animate="" data-animate-delay="1">
-                    <a href="#leasing" class="btn btn--primary btn--hover-primary		   " data-modal="" data-effect="mfp-move-from-left">
+                    <a href="#leasing" class="btn btn--primary btn--hover-primary" data-modal="" data-effect="mfp-move-from-left">
                         <span class="btn__text ">Заявка на лизинг</span>
                     </a>
                 </div>

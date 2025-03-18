@@ -4,6 +4,7 @@
  * @var \yii\web\View $this
  * @var \common\models\Slide[] $slides
  * @var \common\models\Section $parent
+ * @var string $image
  */
 
 use yii\helpers\Html;
@@ -11,6 +12,7 @@ use yii\helpers\Html;
 ?>
 <div class="main-slider__slides-overlay" style="opacity: 1;"></div>
 <?php
+if (count($slides)) {
 foreach ($slides as $index => $slide) {
     ?>
     <div data-id="<?= $index ?>" data-src="<?= $slide->image ?>"
@@ -78,6 +80,17 @@ foreach ($slides as $index => $slide) {
         </div>
     </div>
     <?php
+}
+} else {
+var_dump($image);
+?>
+<div class="main-slider__slides-overlay" style="opacity: 1;"></div>
+<div data-id="0" id="bx_3218110189_255" data-src="<?= $image ?>" class="main-slider-slide active has-overlay" title="Мониторинг и контроль сельскохозяйственной техники - РСМ Агротроник" alt="Мониторинг и контроль сельскохозяйственной техники - РСМ Агротроник">
+    <div class="main-slider-slide__content">
+    </div>
+</div>
+
+<?php
 }
 ?>
 

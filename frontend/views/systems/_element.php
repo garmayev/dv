@@ -8,6 +8,7 @@ use yii\web\View;
  * @var View $this
  * @var Element $model
  */
+//var_dump($model);
 ?>
 <div class="card" itemscope="" itemtype="http://schema.org/ImageObject">
     <a href="/systems/<?= $model->section->code ?>/<?= $model->code ?>" class="card__inner">
