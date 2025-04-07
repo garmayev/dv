@@ -48,10 +48,10 @@ $this->title = $model->name;
 </div>
 
 <?php
-$videos = Video::find()->joinWith('elements')->where(['element.type' => Element::TYPE_ELECTRONIC_SYSTEM])->all();
-echo $this->render('_video', [
-    'models' => $videos
-]);
+//$videos = Video::find()->joinWith('elements')->where(['element.type' => Element::TYPE_ELECTRONIC_SYSTEM])->all();
+//echo $this->render('_video', [
+//    'models' => $videos
+//]);
 ?>
 
 <?= $this->render('/layouts/_interest') ?>

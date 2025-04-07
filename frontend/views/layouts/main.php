@@ -45,8 +45,8 @@ JS);
         $logoWhite = Config::find()->where(['title' => 'logo_white'])->one();
         $logoRed = Config::find()->where(['title' => 'logo_red'])->one();
     ?>
-    <meta property="og:image" content="https://oktober-rsm.ru<?= $logoWhite->value ?>"/>
-    <meta property="og:image:secure_url" content="https://oktober-rsm.ru<?= $logoRed->value ?>"/>
+    <meta property="og:image" content="https://agro-dv.ru<?= $logoWhite->value ?>"/>
+    <meta property="og:image:secure_url" content="https://agro-dv.ru<?= $logoRed->value ?>"/>
     <meta property="og:image:type" content="image/jpeg"/>
     <meta property="og:image:width" content="752"/>
     <meta property="og:image:height" content="395"/>
@@ -1429,14 +1429,13 @@ foreach ($regions as $key => $item) {
    k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
    (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-   ym(99302596, "init", {
+   ym(100593951, "init", {
         clickmap:true,
         trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
+        accurateTrackBounce:true
    });
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/99302596" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img src="https://mc.yandex.ru/watch/100593951" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 <?php
 $this->endPage();

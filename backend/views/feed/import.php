@@ -30,7 +30,7 @@ echo \yii\helpers\Html::tag("div", "", [
 <script>
     async function upload(type, data, target) {
         let container = document.getElementById("result")
-        container.insertAdjacentHTML('beforeend', `<p class="text-warning" data-key="${data.id}">${subKey} #${data.id} is loading...</p>`)
+        container.insertAdjacentHTML('beforeend', `<p class="text-warning" data-key="${data.id}">${type} #${data.id} is loading...</p>`)
         return await fetch("/admin/feed/import-entry", {
             body: JSON.stringify({
                 type: type,

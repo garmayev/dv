@@ -33,11 +33,21 @@ foreach ($slides as $index => $slide) {
                     <?php
                     foreach ($slide->actions as $action) {
                         echo Html::beginTag("div", ["class" => "main-slider-slide__action"]);
-                        echo Html::a(Html::tag("span", $action->text, ["class" => "btn__text"]), $action->href, [
-                            "class" => ($action->theme === "white") ? "btn btn--white btn--hover-primary" : "btn btn--primary btn--hover-primary",
-                            "data-modal" => "",
-                            "data-effect" => "mfp-move-from-left",
-                        ]);
+                        if ($action->href[0] === "#") {
+                            echo Html::a(Html::tag("span", $action->text, ["class" => "btn__text"]), str_replace(' ', '%20', $action->href), [
+                                "class" => ($action->theme === "white") ? "btn btn--white btn--hover-primary" : "btn btn--primary btn--hover-primary",
+                                "data-modal" => "",
+                                "data-effect" => "mfp-move-from-left",
+                                "data-key" => $slide->element->id
+                            ]);
+                        } else {
+                            echo Html::a(Html::tag("span", $action->text, ["class" => "btn__text"]), str_replace(' ', '%20', $action->href), [
+                                "class" => ($action->theme === "white") ? "btn btn--white btn--hover-primary" : "btn btn--primary btn--hover-primary",
+                                "data-effect" => "mfp-move-from-left",
+                                "target" => "_blank",
+                                "data-key" => $slide->element->id
+                            ]);
+                        }
                         echo Html::endTag("div");
                     }
                     ?>

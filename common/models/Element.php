@@ -79,7 +79,7 @@ class Element extends \yii\db\ActiveRecord
         $this->save(false);
         foreach ($this->slides as $slide) {
             $this->unlink('slides', $slide, true);
-            $slide->delete();
+//            $slide->delete();
         }
         foreach ($data as $item) {
             $slide = new Slide($item);

@@ -11,6 +11,11 @@ $this->title = $model->name;
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         setTheme('white')
+        $("[href='#technic-invite']").on("click", (e) => {
+            let target = e.target;
+            let key = $(e.target).attr("data-key");
+            $("[name=PROP_PRODUCT_ID]").val(key);
+        })
     })
 </script>
 
@@ -89,10 +94,10 @@ $this->title = $model->name;
                                 </div>
                                 <div class="block-slider__slide-content-text" data-animate>
                                     <h4 >Основной вид деятельности — растениеводство</h4>
-                                    <div class="block-slider__slide-content-link">
+<!--                                    <div class="block-slider__slide-content-link">
                                         <a href="/company/clients-about-us/ooo-ushakovo-agro-elektronnye-sistemy/"
                                            class="text-link text-default text-link--underline">Читать полностью</a>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -110,8 +115,8 @@ $this->title = $model->name;
                                         <br />
                                     </h4>
                                     <div class="block-slider__slide-content-link">
-                                        <a href="/company/clients-about-us/kfkh-palamarchuk-tochnoe-zemledelie-v-dele/"
-                                           class="text-link text-default text-link--underline">Читать полностью</a>
+<!--                                        <a href="/company/clients-about-us/kfkh-palamarchuk-tochnoe-zemledelie-v-dele/"
+                                           class="text-link text-default text-link--underline">Читать полностью</a> -->
                                     </div>
                                 </div>
                             </div>
@@ -134,8 +139,8 @@ $this->title = $model->name;
                                             «Комбайн отработал весь прошлый сезон, он вполне соответствует всем ключевым тенденциям современн...
                                     </h4>
                                     <div class="block-slider__slide-content-link">
-                                        <a href="#modal--case-3340"
-                                           class="text-link text-default text-link--underline" data-modal data-effect='mfp-move-from-left'>Читать полностью</a>
+<!--                                        <a href="#modal--case-3340"
+                                           class="text-link text-default text-link--underline" data-modal data-effect='mfp-move-from-left'>Читать полностью</a>-->
                                     </div>
                                 </div>
                             </div>
@@ -152,8 +157,8 @@ $this->title = $model->name;
                                 <div class="block-slider__slide-content-text" data-animate>
                                     <h4 >Основное направление деятельности — опытная площадка и семеноводческий центр, где организовано высокорентабельное сельскохозяйственное производство.</h4>
                                     <div class="block-slider__slide-content-link">
-                                        <a href="/company/clients-about-us/ooo-dubovitskoe-zernouborochnyy-kombayn-torum-785/"
-                                           class="text-link text-default text-link--underline">Читать полностью</a>
+<!--                                        <a href="/company/clients-about-us/ooo-dubovitskoe-zernouborochnyy-kombayn-torum-785/"
+                                           class="text-link text-default text-link--underline">Читать полностью</a> -->
                                     </div>
                                 </div>
                             </div>

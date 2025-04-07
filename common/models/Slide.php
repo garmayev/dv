@@ -120,6 +120,11 @@ class Slide extends \yii\db\ActiveRecord
         }
     }
 
+    public function getSection()
+    {
+	return $this->hasOne(Section::class, ['id' => 'secction_id']);
+    }
+
     public function getElement()
     {
         return $this->hasOne(Element::class, ['id' => 'element_id'])->viaTable('element_slide', ['slide_id' => 'id']);

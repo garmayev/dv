@@ -55,11 +55,46 @@ $this->title = $model->name;
     </div>
 </div>
 <?php
-if (count($model->videos)) {
+/* if (count($model->videos)) {
     echo $this->render('_video', [
         'models' => $model->videos,
-    ]);
+    ]); 
+} */
+$description = $model->description_list;
+// var_dump($description);
+?>
+<div class="wrapper wrap-pl-1 wrap-pr-1 mt-80 mb-24 my-2-fixed">
+        <div class="general-description">
+    <div class="general-description__wrap">
+	<div class="general-description__content  general-description__content--second">
+			<div class="general-description__title h2 animate" data-animate-lines="" style="opacity: 1;"><div style="display: block; text-align: left; position: relative; transform: translate3d(0px, 0px, 0px); opacity: 1;"><?= $model->description_list->title ?></div></div>
+			    <div class="general-description__subtitle user-text" data-animate-user-text=""><?= $model->description_list->head_text ?></div>
+			<div class="general-description__left">
+		
+		
+				    <ul class="general-description__list">
+<?php
+foreach ($model->description_list->left_list as $listItem) {
+echo "<li class=\"general-description__list-item user-text animate\" data-animate=\"\">".$listItem->text."</li>";
 }
+?>
+				    </ul>
+			    </div>
+	    <div class="general-description__right ">
+										    <ul class="general-description__list">
+<?php
+foreach ($model->description_list->right_list as $listItem) {
+echo "<li class=\"general-description__list-item user-text animate\" data-animate=\"\">".$listItem->text."</li>";
+}
+?>
+					    </ul>
+			    </div>
+
+	</div>
+    </div>
+</div>
+    </div>
+<?php
 if ($model->description_list->bottom_list) {
     ?>
     <div class="wrapper wrap-pl-1 wrap-pr-1 mt-80 mb-24 my-2-fixed">

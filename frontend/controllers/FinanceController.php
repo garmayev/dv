@@ -32,7 +32,7 @@ class FinanceController extends Controller
         }
         $res = preg_match('/^79[\d]{9}$/', str_replace(['+', '-', ' ', '(', ')'], "", $data["PROP_PHONE"]), $phoneMatches);
         $phoneMatches = array_filter($phoneMatches);
-        if (!res && !count($phoneMatches)) {
+        if (!$res && !count($phoneMatches)) {
             return $this->redirect(\Yii::$app->request->referrer);
         }
         $res = preg_match('/http/', $data["PROP_MESSAGE"], $messageMatches);

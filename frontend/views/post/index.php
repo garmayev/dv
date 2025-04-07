@@ -251,7 +251,7 @@ foreach ($months as $key => $month) {
     <div class="news-list">
         <div class="news-list__list">
             <?php
-            $posts = Post::find()->orderBy(['id' => SORT_DESC])->all();
+            $posts = Post::find()->orderBy(['created_at' => SORT_DESC])->all();
             foreach ($posts as $post) {
                 echo $this->render('_post', ['model' => $post]);
             }

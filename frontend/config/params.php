@@ -1,6 +1,6 @@
 <?php
 return [
     'adminEmail' => 'amg.company@inbox.ru',
-    'companyEmail' => 'servis_evropa@inbox.ru',
+    'companyEmail' => '543165@mail.ru',
     'marketEmail' => 'mms_marketolog@mail.ru'
 ];

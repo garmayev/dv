@@ -16,7 +16,7 @@ class m241015_103530_create_review_table extends Migration
             'id' => $this->primaryKey(),
             'name' => $this->string(),
             'image' => $this->string(),
-            'content' => $this->text(),
+            'content' => 'LONGTEXT',
             'element_id' => $this->integer()
         ]);
     }

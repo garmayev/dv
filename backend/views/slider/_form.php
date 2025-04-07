@@ -32,11 +32,11 @@ Modal::begin([
 ]);
 
 echo Html::beginTag('div', ['class' => 'row mb-3']);
-foreach (Slide::find()->all() as $item)
+foreach (common\models\ElementSlide::find()->all() as $item)
 {
     echo Html::beginTag('div', ['class' => 'col-4 mb-3']);
-    echo Html::img($item->image, ['class' => 'slide col-12 mb-3 selectable', 'data' => ['key' => $item->id, 'title' => $item->title]]);
-    echo Html::tag('p', $item->title);
+    echo Html::img($item->slide->image, ['class' => 'slide col-12 mb-3 selectable', 'data' => ['key' => $item->slide_id, 'title' => $item->slide->title]]);
+    echo Html::tag('p', $item->slide->title);
     echo Html::endTag('div');
 }
 

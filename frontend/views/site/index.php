@@ -7,7 +7,7 @@
 use yii\helpers\Url;
 
 $name = \common\models\Config::findOne(["title" => "title"]);
-$this->title = "{$name->value} - официальный дилер техники Ростсельмаш в Алтайском крае";
+$this->title = "{$name->value} - официальный дилер техники Ростсельмаш в Хабаровском крае";
 
 ?>
 <script>
@@ -75,6 +75,8 @@ $this->title = "{$name->value} - официальный дилер техник�
                     foreach ($slider->slides as $key => $slide) {
                         $dataKey = $slide->element ? $slide->element->id : $slide->section->id;
                         $active = ($key === 0) ? 'active' : '';
+                        $elementSlide = common\models\ElementSlide::find()->where(['slide_id' => $slide->id])->orderBy(['slide_id' => "ASC"])->one();
+//                        var_dump( $elementSlide->element_id );
                         echo "<div data-id='$key' data-src='$slide->image' data-key='{$dataKey}' class='main-slider-slide $active has-overlay' title='$slide->title' alt='$slide->title'>
                     <div class='main-slider-slide__content'>
                         <div class='main-slider-slide__main'>
@@ -84,7 +86,7 @@ $this->title = "{$name->value} - официальный дилер техник�
                             ";
                         foreach ($slide->actions as $action) {
                             echo "<div class='main-slider-slide__action'>
-                                    <a href='$action->href' class='btn btn--primary btn--hover-primary' data-modal='' data-effect='mfp-move-from-left'>
+                                    <a href='$action->href' class='btn btn--primary btn--hover-primary' data-modal='' data-effect='mfp-move-from-left' data-key='".$elementSlide->element_id."'>
                                         <span class='btn__text'>$action->text</span>
                                     </a>
                                 </div>";

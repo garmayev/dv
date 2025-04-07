@@ -18,7 +18,15 @@ class PartsController extends Controller
     public function actionQr()
     {
         if (\Yii::$app->request->isPost) {
-
+//            \Yii::error("TEST");
+            \Yii::$app->mailer
+                ->compose('write-qr', [
+                    'data' => \Yii::$app->request->post(),
+                ])
+                ->setFrom(\Yii::$app->params['adminEmail'])
+                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
+                ->setSubject('Вопрос')
+                ->send();
         }
         return $this->render('qr');
     }
