@@ -441,8 +441,8 @@ foreach ($regions as $key => $item) {
                                                              </i>
                                                         </span>
                                                         <span class="checkbox__text">Нажимая «Отправить» , Вы соглашаетесь с <a
-                                                                    href="/privacy-policy/" class="">Политикой конфиденциальности</a> и <a
-                                                                    href="/terms-of-use/" class="">обработкой персональных данных</a></span>
+                                                                    href="/docs/privacy-policy.pdf" class="">Политикой конфиденциальности</a> и <a
+                                                                    href="/docs/terms-of-use.pdf" class="">обработкой персональных данных</a></span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -682,8 +682,8 @@ foreach ($regions as $key => $item) {
 									 </i>
 								  </span>
                                                         <span class="checkbox__text">Нажимая «Отправить» , Вы соглашаетесь с <a
-                                                                    href="/privacy-policy/" class="">Политикой конфиденциальности</a> и <a
-                                                                    href="/terms-of-use/" class="">обработкой персональных данных</a></span>
+                                                                    href="/docs/privacy-policy.pdf" class="">Политикой конфиденциальности</a> и <a
+                                                                    href="/docs/terms-of-use.pdf" class="">обработкой персональных данных</a></span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -935,8 +935,8 @@ foreach ($regions as $key => $item) {
 									 </i>
 								  </span>
                                                         <span class="checkbox__text">Нажимая «Отправить» , Вы соглашаетесь с <a
-                                                                    href="/privacy-policy/" class="">Политикой конфиденциальности</a> и <a
-                                                                    href="/terms-of-use/" class="">обработкой персональных данных</a></span>
+                                                                    href="/docs/privacy-policy.pdf" class="">Политикой конфиденциальности</a> и <a
+                                                                    href="/docs/terms-of-use.pdf" class="">обработкой персональных данных</a></span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -1096,8 +1096,8 @@ foreach ($regions as $key => $item) {
                                                             </i>
                                                         </span>
                                                         <span class="checkbox__text">Нажимая «Отправить» , Вы соглашаетесь с <a
-                                                                    href="/privacy-policy/" class="">Политикой конфиденциальности</a> и <a
-                                                                    href="/terms-of-use/" class="">обработкой персональных данных</a></span>
+                                                                    href="/docs/privacy-policy.pdf" class="">Политикой конфиденциальности</a> и <a
+                                                                    href="/docs/terms-of-use.pdf" class="">обработкой персональных данных</a></span>
                                                     </label>
                                                 </div>
                                             </div>
@@ -1227,8 +1227,8 @@ foreach ($regions as $key => $item) {
                                                             </i>
                                                         </span>
                                                         <span class="checkbox__text">Нажимая «Отправить» , Вы соглашаетесь с
-                                                            <a href="/privacy-policy/" class="">Политикой конфиденциальности</a> и
-                                                            <a href="/terms-of-use/" class="">обработкой персональных данных</a>
+                                                            <a href="/docs/privacy-policy.pdf" class="">Политикой конфиденциальности</a> и
+                                                            <a href="/docs/terms-of-use.pdf" class="">обработкой персональных данных</a>
                                                         </span>
                                                     </label>
                                                 </div>
@@ -1371,8 +1371,8 @@ foreach ($regions as $key => $item) {
                                                             </i>
                                                         </span>
                                                         <span class="checkbox__text">Нажимая «Отправить» , Вы соглашаетесь с <a
-                                                                    href="/privacy-policy/" class="">Политикой конфиденциальности</a> и <a
-                                                                    href="/terms-of-use/" class="">обработкой персональных данных</a></span>
+                                                                    href="/docs/privacy-policy.pdf" class="">Политикой конфиденциальности</a> и <a
+                                                                    href="/docs/terms-of-use.pdf" class="">обработкой персональных данных</a></span>
                                                     </label>
                                                 </div>
                                             </div>

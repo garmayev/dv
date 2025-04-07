@@ -11,7 +11,7 @@ $this->registerCss(<<<CSS
         "logo logo logo logo"
         "actions nav nav nav"
         ". subsidiaries address switcher"
-        ". policy policy copyrights" !important;
+        "policy policy policy copyrights" !important;
     }
     .footer__address-list {
         display: flex;
@@ -183,11 +183,14 @@ foreach ($branch->phones as $key => $phone) {
             <div class="footer__policy">
                 <ul class="footer__policy-items">
                     <li class="footer__policy-item">
-                        <a href="privacy-policy/index.htm" class="text-link text-default text-small" target="_blank">Политика
+                        <a href="/docs/requirements.pdf" class="text-link text-default text-small" target="_blank">Реквизиты</a>
+                    </li>
+                    <li class="footer__policy-item">
+                        <a href="/docs/privacy-policy.pdf" class="text-link text-default text-small" target="_blank">Политика
                             конфиденциальности</a>
                     </li>
                     <li class="footer__policy-item">
-                        <a href="terms-of-use/index.htm" class="text-link text-default text-small" target="_blank">Пользовательское
+                        <a href="/docs/terms-of-use.pdf" class="text-link text-default text-small" target="_blank">Пользовательское
                             соглашение</a>
                     </li>
                 </ul>
@@ -233,7 +236,10 @@ foreach ($branch->phones as $key => $phone) {
         "logo logo logo logo"
         "actions nav nav nav"
         ". address address address"
-        ". policy policy copyrights";
+        "policy policy policy copyrights";
+        }
+        .footer__policy-items {
+            column-count: 3;
         }
     }
 </style>
