@@ -981,7 +981,7 @@ CSS);
                                             <div class="field">
                                                 <div class="control">
                                                     <div class="input-shell">
-                                                        <input name="ContactForm[phone]" class="input input--default" placeholder="+7 (___) ___ __ __" data-mask-tel="" data-parsley-pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" type="tel" inputmode="tel" required="" data-parsley-trigger="change" data-initialized-mask="">
+                                                        <input name="ContactForm[phone]" class="input input--default" required="" placeholder="+7 (___) ___ __ __*" data-mask-tel="" data-parsley-pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$" type="tel" inputmode="tel" required="" data-parsley-trigger="change" data-initialized-mask="">
                                                     </div>
                                                 </div>
                                             </div>

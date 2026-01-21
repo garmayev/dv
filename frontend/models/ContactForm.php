@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use floor12\phone\PhoneValidator;
 use Yii;
 use yii\base\Model;
 
@@ -15,7 +16,6 @@ class ContactForm extends Model
     public $phone;
     public $direction;
     public $message;
-    public $verifyCode;
 
     /**
      * {@inheritdoc}
@@ -23,50 +23,31 @@ class ContactForm extends Model
     public function rules()
     {
         return [
-            [['name', 'email', 'phone', 'direction', 'message', 'verifyCode'], 'required'],
+            [['name', 'email', 'phone'], 'required'],
+            [['direction', 'message'], 'string'],
+            [['name'], 'match', 'pattern' => '/[А-Яа-яёЁ]*/i', 'message' => \Yii::t('frontend', 'Name can only contain russian letters')],
+            [['phone'], PhoneValidator::class],
+            [['phone'], 'validateCountry'],
             [['email'], 'email'],
-            [['verifyCode'], 'codeVerify'],
         ];
     }
 
-    public function codeVerify($attribute) {
-        $captcha_validate  = new \yii\captcha\CaptchaAction('captcha', Yii::$app->controller);
-        if($this->$attribute){
-            $code = $captcha_validate->getVerifyCode();
-            if($this->$attribute != $code){
-                $this->addError($attribute, 'The verification code is incorrect.');
-            }
+    function validateCountry($attribute, $params)
+    {
+        if (!preg_match('/7|8[\d]{10}/i', $this->$attribute)) {
+            $this->addError($attribute, \Yii::t('frontend', 'Wrong country'));
         }
     }
 
     public function sendEmail()
     {
-        preg_match('/^[a-zA-Z\s]*$/', $this->name, $nameMatches);
-        $new_array = array_filter($nameMatches);
-        if (count($new_array)) {
-            return false;
-        }
-        preg_match('/^[\w\-\.]+@[\w-]+\.+[\w-]{2,4}$/', $this->email, $emailMatches);
-        if (count($emailMatches) && $emailMatches[0] === '') {
-            return false;
-        }
-        preg_match('/^79[\d]{9}$/', str_replace(['+', '-', ' ', '(', ')'], "", $this->phone), $phoneMatches);
-        if (count($phoneMatches) === 0) {
-            return false;
-        }
-        preg_match('/http/', $this->message, $messageMatches);
-        if (count($messageMatches) > 0) {
-            return false;
-        }
-
-        \Yii::error($this->attributes);
-//        return Yii::$app->mailer->compose('contact-us', [
-//                'model' => $this
-//            ])
-//            ->setTo(\Yii::$app->params['companyEmail'])
-//            ->setFrom(Yii::$app->params['adminEmail'])
-//            ->setSubject($this->direction)
-//            ->setTextBody($this->message)
-//            ->send();
+        return Yii::$app->mailer->compose('contact-us', [
+                'model' => $this
+            ])
+            ->setTo(\Yii::$app->params['companyEmail'])
+            ->setFrom(Yii::$app->params['adminEmail'])
+            ->setSubject($this->direction ?? "Заявка с сайта")
+            ->setTextBody($this->message)
+            ->send();
     }
 }

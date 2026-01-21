@@ -41,7 +41,9 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="map-box__bottom wrap-pl-1">
             <?php
                 $branch = \common\models\Branch::findOne(\Yii::$app->session->get('branch'));
-                $cleanPhone = preg_replace('/[\ \(\)\+]/', '', $branch->phone);
+                if ($branch) {
+                    $cleanPhone = preg_replace('/[\ \(\)\+]/', '', $branch->phone);
+                }
             ?>
             <div class="h3 map-box__bottom-heading">
                 Контактные данные
@@ -174,7 +176,7 @@ foreach ($branch->phones as $key => $phone) {
                         <div class="field">
                             <div class="control">
                                 <div class="input-shell">
-                                    <input id="7427356PROP_MAIL" name="ContactForm[mail]" class="input input--default"
+                                    <input id="7427356PROP_MAIL" name="ContactForm[email]" class="input input--default"
                                            placeholder="Email" type="text" required="">
                                 </div>
                             </div>

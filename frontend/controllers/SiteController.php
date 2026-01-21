@@ -127,19 +127,17 @@ class SiteController extends Controller
                 \Yii::error('Model valid');
                 if ($model->sendEmail()) {
                     \Yii::error('Email is sent');
-                    \Yii::$app->session->setFlash('success', \Yii::t('app', 'Your message sent successfully'));
+                    \Yii::$app->session->setFlash('success', \Yii::t('frontend', 'Your message sent successfully'));
                     return $this->redirect(["/site/index"]);
                 } else {
                     \Yii::error('Email is not sent');
                     \Yii::error($model->attributes);
-                    Yii::$app->session->setFlash('error', \Yii::t('app', 'There was an error sending your message.'));
+                    Yii::$app->session->setFlash('error', \Yii::t('frontend', 'There was an error sending your message.'));
                 }
             } else {
-                \Yii::error('Model not validate');
+                \Yii::error($model->getErrors());
             }
             return $this->refresh();
-        } else {
-            \Yii::error($model->errors);
         }
 
         return $this->render('contact', [
