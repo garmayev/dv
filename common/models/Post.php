@@ -75,15 +75,16 @@ class Post extends ActiveRecord
         foreach ($this->tags as $tag) {
             $this->unlink('tags', $tag, true);
         }
-
-        foreach ($tags as $tag) {
-            if (intval($tag) !== 0) {
-                $tag = Tag::findOne($tag);
-            } else {
-                $tag = new Tag(['title' => $tag]);
-                $tag->save();
+        if ($tags) {
+            foreach ($tags as $tag) {
+                if (intval($tag) !== 0) {
+                    $tag = Tag::findOne($tag);
+                } else {
+                    $tag = new Tag(['title' => $tag]);
+                    $tag->save();
+                }
+                $this->link('tags', $tag);
             }
-            $this->link('tags', $tag);
         }
     }
 

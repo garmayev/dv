@@ -23,23 +23,44 @@ class ProductsController extends \yii\web\Controller
         preg_match('/^[A-Za-z]*$/', $data["PROP_NAME"], $nameMatches);
         $new_array = array_filter($nameMatches);
         if (count($new_array)) {
+            \Yii::error($data["PROP_NAME"]);
             return $this->redirect(\Yii::$app->request->referrer);
         }
         preg_match('/^79[\d]{9}$/', str_replace(['+', '-', ' ', '(', ')'], "", $data["PROP_PHONE"]), $phoneMatches);
         if (count($phoneMatches) === 0) {
+            \Yii::error($data["PROP_PHONE"]);
             return $this->redirect(\Yii::$app->request->referrer);
         }
-
         $model = Element::findOne($data['PROP_PRODUCT_ID']);
-        \Yii::$app->mailer
-            ->compose('technic-invite', [
-                'data' => $data,
-                'model' => $model,
-            ])
-            ->setFrom(\Yii::$app->params['adminEmail'])
-            ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
-            ->setSubject('Заявка на технику')
-            ->send();
+        try {
+            \Yii::error(\Yii::$app->params['companyEmail']);
+            \Yii::error(\Yii::$app->params['marketEmail']);
+            $isSended = \Yii::$app->mailer
+                ->compose('technic-invite', [
+                    'data' => $data,
+                    'model' => $model,
+                ])
+                ->setFrom(\Yii::$app->params['adminEmail'])
+                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
+                ->setSubject('Заявка на технику')
+                ->send();
+            if (!$isSended) {
+                \Yii::error("not sent");
+            } else {
+                \Yii::error("mail is sended");
+            }
+            $isSended = \Yii::$app->fileMailer
+                ->compose('technic-invite', [
+                    'data' => $data,
+                    'model' => $model,
+                ])
+                ->setFrom(\Yii::$app->params['adminEmail'])
+                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
+                ->setSubject('Заявка на технику')
+                ->send();
+        } catch (\Exception $e) {
+            \Yii::error($e->getMessage());
+        }
         return $this->redirect(['/site/index']);
     }
 

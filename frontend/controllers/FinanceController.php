@@ -23,32 +23,52 @@ class FinanceController extends Controller
         $res = preg_match('/^[a-zA-Z0-9\s]*$/', $data["PROP_NAME"], $nameMatches);
         $new_array = array_filter($nameMatches);
         if ($res && count($new_array)) {
+            \Yii::error("Wrong name");
             return $this->redirect(\Yii::$app->request->referrer);
         }
         $res = preg_match('/^[\w\-\.]+@[\w-]+\.+[\w-]{2,4}$/', $data["PROP_EMAIL"], $emailMatches);
         $emailMatches = array_filter($emailMatches);
         if (!$res && !count($emailMatches)) {
+            \Yii::error("Wrong email");
             return $this->redirect(\Yii::$app->request->referrer);
         }
         $res = preg_match('/^79[\d]{9}$/', str_replace(['+', '-', ' ', '(', ')'], "", $data["PROP_PHONE"]), $phoneMatches);
         $phoneMatches = array_filter($phoneMatches);
         if (!$res && !count($phoneMatches)) {
+            \Yii::error("Wrong phone");
             return $this->redirect(\Yii::$app->request->referrer);
         }
         $res = preg_match('/http/', $data["PROP_MESSAGE"], $messageMatches);
         $messageMatches = array_filter($messageMatches);
         if ($res && count($messageMatches)) {
+            \Yii::error("Wrong message");
             return $this->redirect(\Yii::$app->request->referrer);
         }
-
-        \Yii::$app->mailer
-            ->compose('leasing', [
-                'data' => $data,
-            ])
-            ->setFrom(\Yii::$app->params['adminEmail'])
-            ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
-            ->setSubject($data['PROP_TYPE'])
-            ->send();
+        try {
+            $isSending = \Yii::$app->mailer
+                ->compose('leasing', [
+                    'data' => $data,
+                ])
+                ->setFrom(\Yii::$app->params['adminEmail'])
+                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
+                ->setSubject($data['PROP_TYPE'])
+                ->send();
+            if (!$isSending) {
+                \Yii::error("Message is not sent");
+            } else {
+                \Yii::error("Message is sent");
+            }
+            \Yii::$app->fileMailer
+                ->compose('leasing', [
+                    'data' => $data,
+                ])
+                ->setFrom(\Yii::$app->params['adminEmail'])
+                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
+                ->setSubject($data['PROP_TYPE'])
+                ->send();
+        } catch (\Exception $e) {
+            \Yii::error("Email sending failed: " . $e->getMessage());
+        }
         return $this->redirect(['/site/index']);
     }
 
@@ -71,7 +91,7 @@ class FinanceController extends Controller
     {
         return $this->render('specials', [
             'dataProvider' => new ActiveDataProvider([
-                'query' => Event::find()->where(['status' => Event::STATUS_ENABLED])->orderBy('id')
+                'query' => Event::find()->where(['status' => Event::STATUS_ENABLED])->orderBy(['id' => SORT_DESC])
             ])
         ]);
     }

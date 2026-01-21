@@ -116,6 +116,7 @@ class SiteController extends Controller
     public function actionContact()
     {
         $model = new ContactForm();
+//        \Yii::error( \Yii::$app->request->isPost );
         if ($model->load(Yii::$app->request->post())) {
             if (Yii::$app->request->isAjax) {
                 Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -123,14 +124,22 @@ class SiteController extends Controller
             }
 
             if ($model->validate()) {
+                \Yii::error('Model valid');
                 if ($model->sendEmail()) {
+                    \Yii::error('Email is sent');
+                    \Yii::$app->session->setFlash('success', \Yii::t('app', 'Your message sent successfully'));
                     return $this->redirect(["/site/index"]);
                 } else {
-                    Yii::$app->session->setFlash('error', 'There was an error sending your message.');
+                    \Yii::error('Email is not sent');
+                    \Yii::error($model->attributes);
+                    Yii::$app->session->setFlash('error', \Yii::t('app', 'There was an error sending your message.'));
                 }
+            } else {
+                \Yii::error('Model not validate');
             }
-
             return $this->refresh();
+        } else {
+            \Yii::error($model->errors);
         }
 
         return $this->render('contact', [

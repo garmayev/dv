@@ -37,7 +37,11 @@ CSS);
 ?>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        setTheme('white')
+        setTheme('white');
+        document.querySelector(".btn.btn--empty-black.btn--hover-primary").addEventListener("click", function (event) {
+            event.preventDefault();
+            event.currentTarget.closest('form').submit();
+        })
     })
 </script>
 <div class="hero-main video_banner">

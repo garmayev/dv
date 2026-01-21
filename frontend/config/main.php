@@ -44,6 +44,12 @@ return [
 //                'dsn' => 'smtp://buryatagro:motmtimsudchctinh@smtp.yandex.ru:465'
             ],
         ],
+        'fileMailer' => [
+            'class' => \yii\symfonymailer\Mailer::class,
+            'viewPath' => '@common/mail',
+            'useFileTransport' => true,
+            'fileTransportPath' => '@runtime/mail'
+        ],
         'session' => [
             // this is the name of the session cookie used for login on the frontend
             'name' => 'advanced-frontend',
