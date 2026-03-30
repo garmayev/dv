@@ -18,7 +18,11 @@ return [
                 'frontend*' => [
                     'class' => \yii\i18n\PhpMessageSource::class,
                     'basePath' => '@common/messages',
-                ]
+                ],
+                'common*' => [
+                    'class' => \yii\i18n\PhpMessageSource::class,
+                    'basePath' => '@common/messages',
+                ],
             ]
         ],
         'request' => [

@@ -24,7 +24,7 @@ class PartsController extends Controller
                     'data' => \Yii::$app->request->post(),
                 ])
                 ->setFrom(\Yii::$app->params['adminEmail'])
-                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
+                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail'], \Yii::$app->params['testEmail']])
                 ->setSubject('Вопрос')
                 ->send();
         }

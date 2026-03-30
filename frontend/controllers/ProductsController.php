@@ -35,29 +35,20 @@ class ProductsController extends \yii\web\Controller
         try {
             \Yii::error(\Yii::$app->params['companyEmail']);
             \Yii::error(\Yii::$app->params['marketEmail']);
-            $isSended = \Yii::$app->mailer
+            $isSent = \Yii::$app->mailer
                 ->compose('technic-invite', [
                     'data' => $data,
                     'model' => $model,
                 ])
                 ->setFrom(\Yii::$app->params['adminEmail'])
-                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
+                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail'], \Yii::$app->params['testEmail']])
                 ->setSubject('Заявка на технику')
                 ->send();
-            if (!$isSended) {
+            if (!$isSent) {
                 \Yii::error("not sent");
             } else {
-                \Yii::error("mail is sended");
+                \Yii::error("mail is sent");
             }
-            $isSended = \Yii::$app->fileMailer
-                ->compose('technic-invite', [
-                    'data' => $data,
-                    'model' => $model,
-                ])
-                ->setFrom(\Yii::$app->params['adminEmail'])
-                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
-                ->setSubject('Заявка на технику')
-                ->send();
         } catch (\Exception $e) {
             \Yii::error($e->getMessage());
         }

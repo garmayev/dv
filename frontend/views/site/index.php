@@ -40,19 +40,22 @@ $this->title = "{$name->value} - официальный дилер техник�
     .block-slider__wrap {
         display: block;
     }
+
     .block-slider__slide-content-wrap {
         margin-top: -100px;
     }
+
     @media screen and (max-width: 800px) {
         .block-slider__slide-content-wrap {
             margin-top: -10px;
         }
     }
-@media (max-width: 639.98px) {
-    .main-slider-slide {
-        padding-top: 7rem;
+
+    @media (max-width: 639.98px) {
+        .main-slider-slide {
+            padding-top: 7rem;
+        }
     }
-}
 </style>
 
 <div class="hero-main">
@@ -86,7 +89,7 @@ $this->title = "{$name->value} - официальный дилер техник�
                             ";
                         foreach ($slide->actions as $action) {
                             echo "<div class='main-slider-slide__action'>
-                                    <a href='$action->href' class='btn btn--primary btn--hover-primary' data-modal='' data-effect='mfp-move-from-left' data-key='".$elementSlide->element_id."'>
+                                    <a href='$action->href' class='btn btn--primary btn--hover-primary' data-modal='' data-effect='mfp-move-from-left' data-key='" . $elementSlide->element_id . "'>
                                         <span class='btn__text'>$action->text</span>
                                     </a>
                                 </div>";
@@ -234,7 +237,7 @@ $this->title = "{$name->value} - официальный дилер техник�
                     $posts = \common\models\Post::find()->limit(6)->orderBy(['created_at' => SORT_DESC])->all();
                     foreach ($posts as $post) {
                         echo $this->render('_post', [
-                            'model' => $post
+                                'model' => $post
                         ]);
                     }
                     ?>
@@ -286,12 +289,12 @@ $this->title = "{$name->value} - официальный дилер техник�
                                         <div class="block-slider__slide-content-text animate" data-animate="">
                                             <div class="user-text">
                                                 <?php
-                                                    echo $aboutText->value
+                                                echo $aboutText->value
 
                                                 ?>
                                                 <div class="block-slider__slide-content-link">
-<!--                                                    <a href="/site/about/"
-                                                       class="text-link text-default text-link--underline">Подробнее</a> -->
+                                                    <!--                                                    <a href="/site/about/"
+                                                                                                           class="text-link text-default text-link--underline">Подробнее</a> -->
                                                 </div>
                                             </div>
                                         </div>
@@ -301,6 +304,113 @@ $this->title = "{$name->value} - официальный дилер техник�
                             </div>
                         </div>
                         <span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <?php
+    $callbacks = \common\models\Callback::find()->orderBy(['id' => SORT_ASC])->limit(10)->all();
+    ?>
+    <div class="block-slider wrapper wrap-pr-1 wrap-pl-1">
+        <div class="block-slider__head animate" data-animate="">
+            <h2 class="block-slider__title h2">Клиенты о нас</h2>
+
+            <div class="block-slider__link">
+                <a href="/callback/index" class="text-link text-default text-link--underline">Все отзывы</a>
+            </div>
+        </div>
+
+        <div class="block-slider__wrap" data-slider-wrap="">
+            <canvas class="block-slider__canvas" width="1779" height="600">
+            </canvas>
+            <?php foreach ($callbacks as $index => $callback) {
+                echo "<div data-id='{$index}' data-src='{$callback->main_image}' class='block-slider__image'></div>";
+            } ?>
+            <div class="swiper-container swiper-container-fade swiper-container-initialized swiper-container-horizontal"
+                 data-slider="" style="margin-top: -100px;">
+
+                <div class="swiper-wrapper" style="transition-duration: 0ms;">
+                    <?php foreach ($callbacks as $index => $callback) {
+                        echo "<div class='block-slider__slide swiper-slide' data-swiper-slide-index='{$index}'>
+                        <div class='block-slider__slide-content'>
+                            <div class='block-slider__slide-content-wrap' style='margin-top: -60px !important; align-items: flex-start;'>
+                                <div class='block-slider__slide-content-head'>
+                                    <h4 class='block-slider__slide-content-title'>{$callback->title}</h4>
+                                </div>
+                                <div class='block-slider__slide-content-text animate' data-animate=''>
+                                    <h4>Основной вид деятельности — {$callback->activity}.</h4>
+                                    <div class='block-slider__slide-content-link'>
+                                        <a href='/callback/view?id={$callback->id}' class='text-link text-default text-link--underline'>Читать полностью</a>
+                                    </div>
+                                </div>                            
+							</div>
+                        </div>
+                    </div>";
+                    } ?>
+                </div>
+
+                <div class="block-slider__pagination swiper-pagination-clickable swiper-pagination-bullets">
+                    <?php
+                    foreach ($callbacks as $index => $callback) {
+                        $num = $index + 1;
+                        echo "<span class='block-slider__bullet' data-id='{$index}'>{$num}</span>";
+                    }
+                    ?>
+                </div>
+                <div class="nav-arrows nav-arrows--default">
+                    <button type="button" class="nav-arrows__button" data-nav-arrow-prev="" title="Назад" aria-label="Назад"></button>
+                    <button type="button" class="nav-arrows__button" data-nav-arrow-next="" title="Вперёд" aria-label="Вперёд"></button>
+                    <button class="nav-arrows__pause">
+                        <i class="icon is-small" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 12L9 20L9 4L17 12Z" fill="currentColor"></path>
+                            </svg>
+                        </i>
+                    </button>
+                    <span class="nav-arrows__arrow">
+                        <i class="icon is-small" aria-hidden="true">
+                            <svg width="24" height="24" stroke="currentColor" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 19L9 12L16 5" stroke-width="2" stroke-linecap="square"></path>
+                            </svg>
+                        </i>
+                    </span>
+                    <span class="nav-arrows__arrow">
+                        <i class="icon is-small" aria-hidden="true">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.00012 5L16.0001 12L9.00012 19" stroke-width="2" stroke-linecap="square"></path>
+                            </svg>
+                        </i>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="block-slider-m" data-slider-m-wrap="">
+            <div class="swiper-container swiper-container-initialized swiper-container-horizontal disabled" data-slider="">
+                <div class="swiper-wrapper" style="transition-duration: 0ms;">
+                    <?php
+                    foreach ($callbacks as $index => $callback) {
+                        echo "<div class='block-slider__slide swiper-slide' data-swiper-slide-index='{$index}'>
+                        <div class='block-slider__slide-img '>
+                            <div class='image is-cover swiper-lazy' role='img' aria-label='image' data-background='{$callback->result_img}'></div>
+                        </div>
+                        <div class='block-slider__slide-content'>
+                            <div class='block-slider__slide-content-wrap'>
+                                <div class='block-slider__slide-content-head'>
+                                    <h4 class='block-slider__slide-content-title'>{$callback->title}</h4>
+                                </div>
+                                <div class='block-slider__slide-content-text' data-animate=''>
+                                    <h4>Основной вид деятельности — {$callback->activity}</h4>
+                                    <div class='block-slider__slide-content-link'>
+                                        <a href='/callback/view?id={$callback->id}' class='text-link text-default text-link--underline'>Читать полностью</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>";
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -328,7 +438,7 @@ $this->title = "{$name->value} - официальный дилер техник�
 
                                 echo "<p class=\"h3 my-16\">{$region}</p>";
                                 foreach ($c as $branch) {
-                                echo "<div class=\"map-search-box__list-item dealer-map-list-item-js\" style=\"margin: 2px 0;\">
+                                    echo "<div class=\"map-search-box__list-item dealer-map-list-item-js\" style=\"margin: 2px 0;\">
                                 <div class=\"map-search-box__head\">
                                     <a href=\"/where-buy/68643/\" class=\"map-search-box__title h4\">{$branch->title}</a>
                                 </div>
@@ -365,7 +475,7 @@ $this->title = "{$name->value} - официальный дилер техник�
                                         </div>";
                                     }
 
-                                        echo "<div class='map-search-box__label'>
+                                    echo "<div class='map-search-box__label'>
 
                                             <div class='map-search-box__label-ico'>
                                                 <svg width='16' height='14' viewBox='0 0 16 14' fill='none'

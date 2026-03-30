@@ -36,13 +36,14 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => \Yii::t('backend', 'Home'), 'url' => ['/site/index']],
-        ['label' => \Yii::t('backend', 'Posts'), 'url' => ['/post/index'], 'visible' => !\Yii::$app->user->isGuest],
-        ['label' => \Yii::t('backend', 'Sliders'), 'url' => ['/slider/index']],
-        ['label' => \Yii::t('backend', 'Events'), 'url' => ['/event/index']],
-        ['label' => \Yii::t('backend', 'Branches'), 'url' => ['/branch/index']],
-        ['label' => \Yii::t('backend', 'Certificates'), 'url' => ['/certificate/index']],
-        ['label' => \Yii::t('backend', 'Feed'), 'url' => ['/feed/index']],
-        ['label' => \Yii::t('backend', 'Configuration'), 'url' => ['/config/index']],
+        ['label' => \Yii::t('backend', 'Posts'), 'url' => ['/post/index'], 'visible' => !\Yii::$app->user->isGuest, 'active' => \Yii::$app->controller->id == 'post'],
+        ['label' => \Yii::t('backend', 'Sliders'), 'url' => ['/slider/index'], 'active' => \Yii::$app->controller->id == 'slider'],
+        ['label' => \Yii::t('backend', 'Events'), 'url' => ['/event/index'], 'active' => \Yii::$app->controller->id == 'event'],
+        ['label' => \Yii::t('backend', 'Callbacks'), 'url' => ['/callback/index'], 'active' => \Yii::$app->controller->id == 'callback'],
+        ['label' => \Yii::t('backend', 'Branches'), 'url' => ['/branch/index'], 'active' => \Yii::$app->controller->id == 'branch'],
+        ['label' => \Yii::t('backend', 'Certificates'), 'url' => ['/certificate/index'], 'active' => \Yii::$app->controller->id == 'certificate'],
+        ['label' => \Yii::t('backend', 'Feed'), 'url' => ['/feed/index'], 'active' => \Yii::$app->controller->id == 'feed'],
+        ['label' => \Yii::t('backend', 'Configuration'), 'url' => ['/config/index'], 'active' => \Yii::$app->controller->id == 'config'],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => \Yii::t('backend', 'Login'), 'url' => ['/site/login']];

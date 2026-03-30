@@ -45,27 +45,19 @@ class FinanceController extends Controller
             return $this->redirect(\Yii::$app->request->referrer);
         }
         try {
-            $isSending = \Yii::$app->mailer
+            $isSent = \Yii::$app->mailer
                 ->compose('leasing', [
                     'data' => $data,
                 ])
                 ->setFrom(\Yii::$app->params['adminEmail'])
-                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
+                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail'], \Yii::$app->params['testEmail']])
                 ->setSubject($data['PROP_TYPE'])
                 ->send();
-            if (!$isSending) {
+            if (!$isSent) {
                 \Yii::error("Message is not sent");
             } else {
                 \Yii::error("Message is sent");
             }
-            \Yii::$app->fileMailer
-                ->compose('leasing', [
-                    'data' => $data,
-                ])
-                ->setFrom(\Yii::$app->params['adminEmail'])
-                ->setTo([\Yii::$app->params['companyEmail'], \Yii::$app->params['marketEmail']])
-                ->setSubject($data['PROP_TYPE'])
-                ->send();
         } catch (\Exception $e) {
             \Yii::error("Email sending failed: " . $e->getMessage());
         }

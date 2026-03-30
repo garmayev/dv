@@ -20,6 +20,10 @@ return [
                 'backend*' => [
                     'class' => \yii\i18n\PhpMessageSource::class,
                     'basePath' => '@common/messages',
+                ],
+                'common*' => [
+                    'class' => \yii\i18n\PhpMessageSource::class,
+                    'basePath' => '@common/messages',
                 ]
             ]
         ],
