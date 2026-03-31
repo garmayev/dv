@@ -37,14 +37,6 @@ $this->title = "{$name->value} - официальный дилер техник�
         max-width: 100vw;
     }
 
-    .block-slider__wrap {
-        display: block;
-    }
-
-    .block-slider__slide-content-wrap {
-        margin-top: -100px;
-    }
-
     @media screen and (max-width: 800px) {
         .block-slider__slide-content-wrap {
             margin-top: -10px;
@@ -54,6 +46,9 @@ $this->title = "{$name->value} - официальный дилер техник�
     @media (max-width: 639.98px) {
         .main-slider-slide {
             padding-top: 7rem;
+        }
+        #about {
+            display: none;
         }
     }
 </style>
@@ -253,7 +248,7 @@ $this->title = "{$name->value} - официальный дилер техник�
 </div>
 
 <div class="pt-2-fixed mt-2-fixed-negative pb-64 wrapper">
-    <div id="comp_211be8534e9451ddf16fae65963a34ee">
+    <div id="about">
         <div class="block-slider wrapper wrap-pr-1 wrap-pl-1">
             <div class="block-slider__head animate" data-animate="">
                 <h2 class="block-slider__title h2">О компании</h2>
@@ -310,7 +305,8 @@ $this->title = "{$name->value} - официальный дилер техник�
     </div>
 
     <?php
-    $callbacks = \common\models\Callback::find()->orderBy(['id' => SORT_ASC])->limit(10)->all();
+    $callbacks = \common\models\Callback::find()->orderBy(['id' => SORT_DESC, 'created_at' => SORT_DESC, 'updated_at' => SORT_DESC])->limit(10)->all();
+    if (count($callbacks)) :
     ?>
     <div class="block-slider wrapper wrap-pr-1 wrap-pl-1">
         <div class="block-slider__head animate" data-animate="">
@@ -322,8 +318,7 @@ $this->title = "{$name->value} - официальный дилер техник�
         </div>
 
         <div class="block-slider__wrap" data-slider-wrap="">
-            <canvas class="block-slider__canvas" width="1779" height="600">
-            </canvas>
+            <canvas class="block-slider__canvas"></canvas>
             <?php foreach ($callbacks as $index => $callback) {
                 echo "<div data-id='{$index}' data-src='{$callback->main_image}' class='block-slider__image'></div>";
             } ?>
@@ -332,14 +327,16 @@ $this->title = "{$name->value} - официальный дилер техник�
 
                 <div class="swiper-wrapper" style="transition-duration: 0ms;">
                     <?php foreach ($callbacks as $index => $callback) {
+                        $opacity = $index === 0 ? 'style="opacity: 1 !important"' : '';
+                        $activities = implode(', ', \yii\helpers\ArrayHelper::map($callback->activities, 'id', 'title'));
                         echo "<div class='block-slider__slide swiper-slide' data-swiper-slide-index='{$index}'>
                         <div class='block-slider__slide-content'>
-                            <div class='block-slider__slide-content-wrap' style='margin-top: -60px !important; align-items: flex-start;'>
+                            <div class='block-slider__slide-content-wrap' style=''>
                                 <div class='block-slider__slide-content-head'>
                                     <h4 class='block-slider__slide-content-title'>{$callback->title}</h4>
                                 </div>
-                                <div class='block-slider__slide-content-text animate' data-animate=''>
-                                    <h4>Основной вид деятельности — {$callback->activity}.</h4>
+                                <div class='block-slider__slide-content-text animate' data-animate='' {$opacity}>
+                                    <h4>Основной вид деятельности — ".$activities.".</h4>
                                     <div class='block-slider__slide-content-link'>
                                         <a href='/callback/view?id={$callback->id}' class='text-link text-default text-link--underline'>Читать полностью</a>
                                     </div>
@@ -415,7 +412,7 @@ $this->title = "{$name->value} - официальный дилер техник�
             </div>
         </div>
     </div>
-
+    <?php endif; ?>
     <div class="tabs-content">
         <div class="tabs-content__el active ">
             <div class="wrapper wrap-pl-1 wrap-pr-1">

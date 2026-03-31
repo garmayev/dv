@@ -9,8 +9,8 @@ class m260328_091539_add_column_main_image_to_callback_table extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('callback', 'main_image', $this->string()->null());
-        $this->addColumn('type', 'type', $this->string()->null());
+//        $this->addColumn('callback', 'main_image', $this->string()->null());
+        $this->addColumn('callback', 'type', $this->string()->null());
     }
 
     /**

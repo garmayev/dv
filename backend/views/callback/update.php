@@ -8,7 +8,7 @@ use common\models\Callback;
  * @var $model Callback
  */
 
-$this->title = \Yii::t('backend', 'Update Callback');
+$this->title = \Yii::t('common', 'Update Callback');
 $this->params['breadcrumbs'][] = ['label' => \Yii::t('backend', 'Callbacks'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => \Yii::t('backend', 'Callback'), 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = $this->title;

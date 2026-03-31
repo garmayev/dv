@@ -27,6 +27,7 @@ return [
     'Client Address' => 'Адрес клиента',
     'Client Name' => 'Имя клиента',
     'Decision' => 'Решение',
+    'Decisions' => 'Решение',
     'Decision Img' => 'Картинка Решение',
     'Element ID' => '',
     'Factor ID' => '',
@@ -43,5 +44,6 @@ return [
     'Text' => 'Текст',
     'Image' => 'Изображение',
     'Save' => 'Сохранить',
-    'Result' => 'Результат'
+    'Result' => 'Результат',
+    'Update Callback' => 'Редактировать отзыв',
 ];

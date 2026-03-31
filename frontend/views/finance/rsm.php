@@ -32,6 +32,13 @@ JS);
         document.querySelector(".header.js-header").classList.remove("is-white");
     })
 </script>
+<style>
+@media (max-width: 991px) {
+    .detail-conditions {
+        margin-top: 3.2rem;
+    }
+}
+</style>
 <div class="mb-lg-128 mb-md-96 mb-80 wrapper wrap-pl-1 wrap-pr-1">
     <div class="mt-lg-96-negative mt-56-negative">
         <div class="detail-conditions">

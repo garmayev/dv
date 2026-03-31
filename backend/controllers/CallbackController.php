@@ -14,7 +14,7 @@ class CallbackController extends Controller
     {
         return $this->render('index', [
             'dataProvider' => new ActiveDataProvider([
-                'query' => Callback::find(),
+                'query' => Callback::find()->orderBy(['id' => SORT_DESC, 'created_at' => SORT_DESC, 'updated_at' => SORT_DESC]),
             ])
         ]);
     }
@@ -31,7 +31,7 @@ class CallbackController extends Controller
                 $model->decision_file = UploadedFile::getInstance($model, 'decision_file');
                 $model->result_file = UploadedFile::getInstance($model, 'result_file');
                 if ($model->save()) {
-                    \Yii::$app->session->setFlash('success', \Yii::t('backend', 'Callback updated'));
+                    \Yii::$app->session->setFlash('success', \Yii::t('backend', 'Callback created'));
                     return $this->redirect(['index']);
                 }
             }
@@ -69,6 +69,7 @@ class CallbackController extends Controller
     {
         $model = Callback::findOne($id);
         $model->delete();
+        return $this->redirect(['index']);
     }
 
     public function actionView($id)

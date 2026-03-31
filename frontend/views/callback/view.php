@@ -10,17 +10,19 @@ use common\models\Callback;
 
 $this->title = $model->title;
 
-function features(string $title, string $image, string $text, string $type)
+function features(string $title, string $image, string $text, string $type, bool $isActive)
 {
     $label = \Yii::t('common', $type);
-    return "<div class='main-features__accordion shown' data-image-src='{$image}' data-features-accordion-row=''>
-        <button type='button' class='main-features__toggle h5 is-active animate' data-features-accordion-toggle='' data-animate=''>$label
+    $mainClass = $isActive ? 'shown' : '';
+    $visibleRoll = $isActive ? '' : 'display: none';
+    return "<div class='main-features__accordion {$mainClass}' data-image-src='{$image}' data-features-accordion-row=''>
+        <button type='button' class='main-features__toggle h5 animate' data-features-accordion-toggle='' data-animate=''>$label
             <svg width='24' height='24' viewBox='0 0 24 24' fill='currentColor' xmlns='http://www.w3.org/2000/svg'>
                 <rect x='20.48' y='8.41431' width='12' height='2' transform='rotate(135 20.48 8.41431)'></rect>
                 <rect x='4.92371' y='7' width='12' height='2' transform='rotate(45 4.92371 7)'></rect>
             </svg>
         </button>
-        <div class='main-features__roll' data-features-accordion-roll=''>
+        <div class='main-features__roll' data-features-accordion-roll='' style='$visibleRoll'>
             <div class='main-features__content'>
                 <div class='user-text animate' data-animate=''>{$text}</div>
             </div>
@@ -36,6 +38,39 @@ function features(string $title, string $image, string $text, string $type)
 
 ?>
 
+<script>
+    document.querySelector(".logo-white").style.display = "none !important";
+    document.querySelector(".logo-red").style.display = "block !important";
+    document.querySelector(".w-logo").style.display = "none";
+    document.querySelector(".r-logo").style.display = "block";
+    document.querySelector(".header.js-header").classList.add("is-white");
+    document.addEventListener("DOMContentLoaded", () => {
+        const images = $(".text-lead img")
+        images.removeAttr("height");
+        images.removeAttr("width");
+    });
+</script>
+<style>
+    @media (max-width: 600px) {
+        .main-slider-slide.active {
+            padding-top: 3.5rem;
+        }
+        .main-slider-slide__content {
+            padding: 0 1rem;
+        }
+        .main-slider-slide__title.h2 {
+            font-size: 1.3rem !important;
+            padding-right: 0;
+        }
+        .case-description__content {
+            margin-bottom: 1rem;
+        }
+    }
+    .text-lead img {
+        display: inline-block;
+        max-width: 100%;
+    }
+</style>
 <div class="mb-2-fixed">
     <div class="hero-main  ">
         <div class="hero-main__wrap">
@@ -112,7 +147,7 @@ function features(string $title, string $image, string $text, string $type)
                     <div class="case-description__heading">
                         <h2>Общее описание</h2>
                     </div>
-                    <div class="case-description__lead text-lead">Основной вид деятельности — <?= $model->activity ?>>.</div>
+                    <div class="case-description__lead text-lead">Основной вид деятельности — <?= implode(', ', \yii\helpers\ArrayHelper::map($model->activities, 'id', 'title')) ?>.</div>
                 </div>
                 <div class="case-description__side">
                     <div class="case-description__side-content">
@@ -144,13 +179,13 @@ function features(string $title, string $image, string $text, string $type)
                         <div class="main-features__accordions">
                             <?php
                             if ($model->problems && $model->problem_img) {
-                                echo features($model->title, $model->problem_img, $model->problems, 'Problems');
+                                echo features($model->title, $model->problem_img, $model->problems, 'Problems', true);
                             }
                             if ($model->tasks && $model->task_img) {
-                                echo features($model->title, $model->task_img, $model->tasks, 'Tasks');
+                                echo features($model->title, $model->task_img, $model->tasks, 'Tasks', false);
                             }
                             if ($model->decision && $model->decision_img) {
-                                echo features($model->title, $model->decision_img, $model->decision, 'Decisions');
+                                echo features($model->title, $model->decision_img, $model->decision, 'Decisions', false);
                             }
                             ?>
                         </div>
@@ -238,21 +273,6 @@ function features(string $title, string $image, string $text, string $type)
                             </div>
                             <div class="block-slider__slide-content">
                                 <div class="block-slider__slide-content-wrap has-factors">
-                                    <div class="block-slider__factors">
-                                        <div class="block-slider__factor">
-                                            <div class="factor" data-viewport-trigger="" data-animate="">
-                                                <div class="factor__text text-default " data-animate="fade-in-up" data-animate-delay="1">Заготовленной массы</div>
-                                                <div class="factor__head">
-                                                    <span class="factor__number">
-                                                        <span class="factor__number-value" data-counter="" data-counter-separator=" ">0</span>
-                                                    </span>
-                                                    <span class="factor__suffix factor__suffix--large">
-                                                        <span style="display: none">1000</span> тонн
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="block-slider__slide-content-text" data-animate="">
                                         <div class="text-lead">
                                             <?= $model->result_text ?>

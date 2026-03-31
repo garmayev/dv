@@ -37,7 +37,7 @@ echo $form->field($model, 'activities', [
         'pluginOptions' => [
                 'tags' => true,
                 'allowClear' => true,
-                'tokenSeparators' => [',', ' '],
+                'tokenSeparators' => [','],
         ]
 ]);
 
@@ -63,6 +63,15 @@ echo $form->field($model, 'elements', [
         'options' => [
                 'multiple' => true,
         ]
+]);
+
+echo $form->field($model, 'type', [
+        'options' => [ 'class' => 'col-12 mb-3' ]
+])->widget(Select2::class, [
+        'data' => [
+            Callback::TYPE_CASE => \Yii::t('backend', 'Case'), 
+            Callback::TYPE_CALLBACK => \Yii::t('backend', 'Callback')
+        ],
 ]);
 
 echo $form->field($model, 'main_file', [
@@ -159,6 +168,7 @@ echo $form->field($model, 'main_file', [
                                     'clips',
                                     'fullscreen',
                                     'imagemanager',
+                                    'image'
                             ],
                     ]
             ])->label(\Yii::t('common', 'Text')); ?>

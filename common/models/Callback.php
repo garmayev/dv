@@ -43,6 +43,19 @@ class Callback extends \yii\db\ActiveRecord
     const TYPE_CALLBACK = 0;
     const TYPE_CASE = 1;
 
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    \yii\db\ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    \yii\db\ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+            ]
+        ];
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -61,7 +74,7 @@ class Callback extends \yii\db\ActiveRecord
             [['title'], 'required'],
             [['title', 'activity', 'client_name', 'client_address', 'problems', 'problem_img', 'tasks', 'task_img', 'decision', 'decision_img', 'result_img', 'result_text', 'result_addon', 'main_image'], 'string'],
             [['problem_file', 'task_file', 'decision_file', 'result_file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png, gif, webp'],
-            [['type'], 'integer'],
+            [['type', 'created_at'], 'integer'],
             [['type'], 'in', 'range' => [self::TYPE_CALLBACK,self::TYPE_CASE]],
             [['activities', 'elements'], 'safe'],
         ];
@@ -102,6 +115,7 @@ class Callback extends \yii\db\ActiveRecord
             'type' => Yii::t('common', 'Type'),
             'activities' => Yii::t('common', 'Activities'),
             'main_file' => Yii::t('common', 'Main Image'),
+            'created_at' => Yii::t('common', 'Created At'),
         ];
     }
 
@@ -199,7 +213,7 @@ class Callback extends \yii\db\ActiveRecord
     private function upload($attribute, ?UploadedFile $field)
     {
         // Удаляем старый файл, если он есть
-        if (!empty($field)) {
+        if (!empty($field) && $this->$attribute) {
             $oldFilePath = \Yii::getAlias('@frontend/web') . $this->$attribute;
             $oldFilePath = str_replace('/', DIRECTORY_SEPARATOR, $oldFilePath);
             if (file_exists($oldFilePath)) {
@@ -219,7 +233,7 @@ class Callback extends \yii\db\ActiveRecord
                 mkdir($directory, 0755, true);
             }
 
-            if ($field->saveAs($fullPath)) {
+            if ($field->saveAs($fullPath, false)) {
                 $this->$attribute = $filename;
                 return true;
             } else {

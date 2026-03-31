@@ -9,6 +9,18 @@ use yii\widgets\DetailView;
  * @var $model Callback
  */
 
+$this->registerCss(<<<CSS
+td img {
+    max-width: 700px;
+}
+CSS);
+
+$this->title = \Yii::t('backend', 'Callback');
+$this->params['breadcrumbs'][] = ['label' => \Yii::t('backend', 'Callbacks'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = $this->title;
+?>
+<div class="table-responsive">
+<?php
 echo DetailView::widget([
     'options' => [
         'class' => 'table table-striped detail-view',
@@ -46,3 +58,5 @@ echo DetailView::widget([
         ]
     ]
 ]);
+?>
+</div>

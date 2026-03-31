@@ -56,7 +56,7 @@ CSS);
                 </li>
                 <li class="breadcrumbs__crumb" itemprop="itemListElement" itemscope=""
                     itemtype="https://schema.org/ListItem">
-                    <a href="/company/" class="breadcrumbs__text breadcrumbs__link text-lead" itemprop="item">
+                    <a href="/site/about" class="breadcrumbs__text breadcrumbs__link text-lead" itemprop="item">
                         <span itemprop="name">Компания</span>
                     </a>
                     <meta itemprop="position" content="2">
@@ -76,7 +76,7 @@ CSS);
     <div class="tabs-link__wrap">
         <div class="tabs-list">
             <div class="tabs-list__wrap">
-                <a href="#" class="tabs-list__el <?= $searchModel->searchType === '' ? "active" : "" ?>" data-href="#all" data-tab="" data-key="">Все</a>
+                <a href="#" class="tabs-list__el <?= $searchModel->searchType === '' || $searchModel->searchType === null ? "active" : "" ?>" data-href="#all" data-tab="" data-key="">Все</a>
                 <a href="#" class="tabs-list__el <?= $searchModel->searchType === '1' ? "active" : "" ?>" data-href="#case" data-tab="" data-key="1">Кейсы</a>
                 <a href="#" class="tabs-list__el <?= $searchModel->searchType === '0' ? "active" : "" ?>" data-href="#review" data-tab="" data-key="0">Отзывы</a>
             </div>

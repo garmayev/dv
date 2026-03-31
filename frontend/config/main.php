@@ -39,10 +39,10 @@ return [
             'viewPath' => '@common/mail',
             'useFileTransport' => false,
             'transport' => [
-                'scheme' => 'smtps',
+                'scheme' => 'smtp',
                 'host' => 'smtp.mail.ru',
-                'username' => 'amg.company@inbox.ru',
-                'password' => 'dAV5dj7Y28JrBThXmNWk',
+                'username' => 'amg.systems@inbox.ru',
+                'password' => 'GOLXSUEaP6BGyhm8zcSU',
                 'ssl' => true,
                 'port' => 465,
 //                'dsn' => 'smtp://buryatagro:motmtimsudchctinh@smtp.yandex.ru:465'

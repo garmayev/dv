@@ -46,3 +46,13 @@
         transform: scale(1, 1);
     }
 }
+
+@media (max-width: 639.98px) {
+    .card__img .image {
+        top: 50% !important;
+        bottom: unset;
+        height: auto;
+        min-height: 100%;
+        transform: translateY(-50%);
+    }
+}

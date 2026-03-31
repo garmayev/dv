@@ -130,6 +130,9 @@ JS);
                 <a href="/post/index" class="link-action header-top__item">
                     <span class="link-action__text">Новости</span>
                 </a>
+                <a href="/callback/index" class="link-action header-top__item">
+                    <span class="link-action__text">Клиенты о нас</span>
+                </a>
                 <a href="#modal-region" class="modal-region link-action header-top__item" data-modal="" data-effect="mfp-move-from-left">
                     <i class="icon is-small link-action__icon" aria-hidden="true">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16" fill="currentColor">
@@ -556,6 +559,9 @@ JS);
                             </ul>
                         </li>
                         <li class="menu__item menu__item--level-0">
+                            <a href="/callback/index" class="menu__link menu__link--level-0">Клиенты о нас</a>
+                        </li>
+                        <li class="menu__item menu__item--level-0">
                             <a href="/finance/index"
                                class="menu__link menu__link--level-0">Финансирование</a>
                             <button type="button" class="menu__item-arrow menu__item-arrow--forwards"></button>
@@ -574,7 +580,7 @@ JS);
                                        class="menu__link menu__link--level-1 text-default">Лизинг</a>
                                 </li>
                                 <li class="menu__item menu__item--level-1">
-                                    <a href="/finance/lending"
+                                    <a href="/finance/index"
                                        class="menu__link menu__link--level-1 text-default">Кредитование</a>
                                 </li>
                                 <li class="menu__item menu__item--level-1">
