@@ -14,7 +14,7 @@ class CallbackController extends Controller
     {
         return $this->render('index', [
             'dataProvider' => new ActiveDataProvider([
-                'query' => Callback::find()->orderBy(['id' => SORT_DESC, 'created_at' => SORT_DESC, 'updated_at' => SORT_DESC]),
+                'query' => Callback::find()->orderBy(['created_at' => SORT_DESC]),
             ])
         ]);
     }

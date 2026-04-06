@@ -40,7 +40,7 @@ echo GridView::widget([
         [
             'attribute' => 'activity',
             'format' => 'html',
-            'headerOptions' => ['class' => 'col-4'],
+            'headerOptions' => ['class' => 'col-3'],
             'value' => function ($model) {
                 return implode(', ', \yii\helpers\ArrayHelper::map($model->activities, 'id', 'title'));
             }
@@ -48,9 +48,18 @@ echo GridView::widget([
         [
             'attribute' => 'elements',
             'format' => 'html',
-            'headerOptions' => ['class' => 'col-4'],
+            'headerOptions' => ['class' => 'col-3'],
             'value' => function ($model) {
                 return implode(', ', \yii\helpers\ArrayHelper::map($model->elements, 'id', 'name'));
+            }
+        ],
+        [
+            'attribute' => 'timestamp',
+            'label' => \Yii::t('backend', 'Created At'),
+            'format' => 'raw',
+            'headerOptions' => ['class' => 'col-1'],
+            'value' => function (\common\models\Callback $model) {
+                return \Yii::$app->formatter->asDate($model->created_at ?? $model->updated_at, 'php:Y F d');
             }
         ],
         [

@@ -24,6 +24,8 @@ use yii\web\UploadedFile;
  * @property string|null $result_text
  * @property string|null $result_addon
  * @property int $type
+ * @property int $created_at
+ * @property int $updated_at
  *
  * @property Activity[] $activities
  * @property Element[] $elements
@@ -76,7 +78,7 @@ class Callback extends \yii\db\ActiveRecord
             [['problem_file', 'task_file', 'decision_file', 'result_file'], 'file', 'skipOnEmpty' => true, 'extensions' => 'jpg, jpeg, png, gif, webp'],
             [['type', 'created_at'], 'integer'],
             [['type'], 'in', 'range' => [self::TYPE_CALLBACK,self::TYPE_CASE]],
-            [['activities', 'elements'], 'safe'],
+            [['activities', 'elements', 'timestamp'], 'safe'],
         ];
     }
 
@@ -135,7 +137,6 @@ class Callback extends \yii\db\ActiveRecord
         $transaction = \Yii::$app->db->beginTransaction();
         try {
             if ($this->save(false)) {
-                \Yii::error('saved');
                 foreach ($value as $item) {
                     if (intval($item)) {
                         $activity = Activity::findOne($item);
@@ -208,6 +209,17 @@ class Callback extends \yii\db\ActiveRecord
     public function getFactors()
     {
         return $this->hasMany(Factor::class, ['id' => 'factor_id'])->viaTable('callback_factor', ['callback_id' => 'id']);
+    }
+
+    public function getTimestamp()
+    {
+        return \Yii::$app->formatter->asDate($this->created_at ? $this->created_at : $this->updated_at, 'php:d-m-Y');
+    }
+
+    public function setTimestamp($value)
+    {
+        \Yii::error($value);
+        $this->created_at = \Yii::$app->formatter->asTimestamp($value);
     }
 
     private function upload($attribute, ?UploadedFile $field)

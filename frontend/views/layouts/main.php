@@ -40,25 +40,15 @@ JS);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
 
-    <meta property="og:title" content="Главная"/>
+    <meta property="og:title" content="<?= $this->title ?>"/>
     <?php
         $logoWhite = Config::find()->where(['title' => 'logo_white'])->one();
         $logoRed = Config::find()->where(['title' => 'logo_red'])->one();
     ?>
-    <meta property="og:image" content="https://agro-dv.ru<?= $logoWhite->value ?>"/>
-    <meta property="og:image:secure_url" content="https://agro-dv.ru<?= $logoRed->value ?>"/>
-    <meta property="og:image:type" content="image/jpeg"/>
-    <meta property="og:image:width" content="752"/>
-    <meta property="og:image:height" content="395"/>
-    <meta name="ahrefs-site-verification" content="b5053f3ed0723b575994c27e4a9a7be1a4787788d4648db11875a86401389033"/>
+    <meta property="og:image" content="<?= $logoWhite ? $logoWhite->value : $logoRed->value ?>"/>
+    <meta property="og:image:secure_url" content="<?= $logoWhite ? $logoWhite->value : $logoRed->value ?>"/>
 
-    <link rel="manifest" href="/dist/site.webmanifest"/>
-    <link rel="mask-icon" href="/dist/safari-pinned-tab.svg" color="#5bbad5"/>
-    <meta name="msapplication-TileColor" content="#ff941a"/>
-    <meta name="msapplication-config" content="/dist/browserconfig.xml"/>
-    <meta name="theme-color" content="#ffffff"/>
-    <meta name="cmsmagazine" content="918c8f14e47036201c9ff316c734e22f"/>
-    <link rel="canonical" href="index.htm"/>
+    <link rel="canonical" href="index.php"/>
     <link rel="icon" href="/favicon.ico" size="any">
     <link rel="icon" href="/favicon.ico" type="image/svg+xml">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -128,7 +118,6 @@ JS);
             font-size: 2rem;
         }
         .link-action {
-            display: -ms-inline-flexbox;
             display: inline-flex;
             -webkit-box-align: center;
             -ms-flex-align: center;

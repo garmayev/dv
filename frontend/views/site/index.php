@@ -305,7 +305,7 @@ $this->title = "{$name->value} - официальный дилер техник�
     </div>
 
     <?php
-    $callbacks = \common\models\Callback::find()->orderBy(['id' => SORT_DESC, 'created_at' => SORT_DESC, 'updated_at' => SORT_DESC])->limit(10)->all();
+    $callbacks = \common\models\Callback::find()->orderBy(['updated_at' => SORT_DESC, 'created_at' => SORT_DESC])->limit(10)->all();
     if (count($callbacks)) :
     ?>
     <div class="block-slider wrapper wrap-pr-1 wrap-pl-1">

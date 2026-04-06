@@ -58,6 +58,11 @@ class CallbackSearch extends Callback
         $query = Callback::find()->joinWith(['elements', 'activities']);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'created_at' => SORT_DESC,
+                ],
+            ],
         ]);
 
         if (!$this->load($params) && !$this->validate()) {

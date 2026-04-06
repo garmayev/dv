@@ -15,6 +15,12 @@ return [
     'bootstrap' => ['log'],
     'modules' => [],
     'components' => [
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'timeZone' => 'Asia/Irkutsk', // The timezone of the user input
+            'defaultTimeZone' => 'UTC',      // The target timezone (e.g., for DB storage)
+            'datetimeFormat' => 'php:Y-m-d H:i:s',
+        ],
         'i18n' => [
             'translations' => [
                 'backend*' => [

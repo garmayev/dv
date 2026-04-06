@@ -66,13 +66,17 @@ echo $form->field($model, 'elements', [
 ]);
 
 echo $form->field($model, 'type', [
-        'options' => [ 'class' => 'col-12 mb-3' ]
+        'options' => ['class' => 'col-12 mb-3']
 ])->widget(Select2::class, [
         'data' => [
-            Callback::TYPE_CASE => \Yii::t('backend', 'Case'), 
-            Callback::TYPE_CALLBACK => \Yii::t('backend', 'Callback')
+                Callback::TYPE_CASE => \Yii::t('backend', 'Case'),
+                Callback::TYPE_CALLBACK => \Yii::t('backend', 'Callback')
         ],
 ]);
+
+echo $form->field($model, 'timestamp', [
+        'options' => ['class' => 'col-12 mb-3']
+])->textInput(['type' => 'date']);
 
 echo $form->field($model, 'main_file', [
         'options' => [
