@@ -45,8 +45,8 @@ JS);
         $logoWhite = Config::find()->where(['title' => 'logo_white'])->one();
         $logoRed = Config::find()->where(['title' => 'logo_red'])->one();
     ?>
-    <meta property="og:image" content="<?= $logoWhite ? $logoWhite->value : $logoRed->value ?>"/>
-    <meta property="og:image:secure_url" content="<?= $logoWhite ? $logoWhite->value : $logoRed->value ?>"/>
+    <meta property="og:image" content="<?= \Yii::$app->request->hostInfo ?><?= $logoWhite ? $logoWhite->value : $logoRed->value ?>"/>
+    <meta property="og:image:secure_url" content="<?= \Yii::$app->request->hostInfo ?><?= $logoWhite ? $logoWhite->value : $logoRed->value ?>"/>
 
     <link rel="canonical" href="index.php"/>
     <link rel="icon" href="/favicon.ico" size="any">
